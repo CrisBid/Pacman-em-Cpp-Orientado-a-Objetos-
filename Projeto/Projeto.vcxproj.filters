@@ -50,4 +50,9 @@
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="Roboto-Regular.ttf">
+      <Filter>Arquivos de Origem</Filter>
+    </Font>
+  </ItemGroup>
 </Project>

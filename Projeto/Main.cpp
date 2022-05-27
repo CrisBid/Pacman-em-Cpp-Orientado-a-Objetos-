@@ -5,6 +5,8 @@
 #include "allegro5/allegro_image.h"
 #include "allegro5/allegro_audio.h"
 #include "allegro5/allegro_acodec.h"
+#include "allegro5/allegro_font.h"
+#include "allegro5/allegro_ttf.h"
 
 using namespace std;
 
@@ -46,6 +48,8 @@ int main(int argc, char **argv)
 
    al_install_keyboard();//Funcoes Teclado
    al_init_image_addon();//Imagens
+   al_init_font_addon();//Font
+   al_init_ttf_addon();//Arquivo ttf
 
    timer = al_create_timer(1.0 / FPS);
    if(!timer) {
@@ -99,6 +103,15 @@ int main(int argc, char **argv)
    }
 
    al_draw_bitmap(image, 0, 0, 0); //Desenha a imagem
+
+   ALLEGRO_BITMAP* objeto = NULL; //Imagem
+
+   int objetoL = 50, objetoA = 500, objeto_x = 500, objeto_y = 0;//Largura e Altura
+   objeto = al_load_bitmap("image.png");//200x600
+   //al_draw_bitmap(darth, darth_x, darth_y, 0);
+   al_draw_bitmap_region(objeto, 0, 0, objetoL, objetoA, objeto_x, objeto_y, 0);
+
+   ALLEGRO_FONT* font20 = al_load_font("Roboto-Regular.ttf", 20, NULL);
 
    ALLEGRO_BITMAP  *darth;
    int darthL = 32, darthA = 32;//Largura e Altura
@@ -156,6 +169,12 @@ int main(int argc, char **argv)
    int sprite = 0, fator = 1;
    int tempo, miliseg = 200;
 
+   bool top = false;
+   bool right = true;
+   bool booton = false;
+   bool left = false;
+   int lado = 0;
+
    while(!termina)
    {
       //printf("%.2f %.2f\n", darth_x, darth_y);
@@ -171,7 +190,9 @@ int main(int argc, char **argv)
            sprite = sprite + fator; //0 1 2 3 2 1 0     
            if(sprite == 0) fator = 1;
            if(sprite == 1) fator = -1;
-        }        
+        } 
+
+        
         
 
 	if(teclas[ALLEGRO_KEY_O]){
@@ -185,25 +206,58 @@ int main(int argc, char **argv)
 	   teclaD = true;
 	   al_play_sample(sample2, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);//al_play_sample_instance(instance2);
 	}
+    if (teclas[ALLEGRO_KEY_UP])
+    {
+        top = true;
+        booton = false;
+        left = false;
+        right = false;
+        lado = 3;
+    }
+    if (teclas[ALLEGRO_KEY_DOWN])
+    {
+        booton = true;
+        top = false;
+        left = false;
+        right = false;
+        lado = 1;
+    }
+    if (teclas[ALLEGRO_KEY_LEFT])
+    {
+        left = true;
+        top = false;
+        booton = false;
+        right = false;
+        lado = 2;
+    }
+    if (teclas[ALLEGRO_KEY_RIGHT])
+    {
+        right = true;
+        top = false;
+        booton = false;
+        left = false;
+        lado = 0;
+    }
+	    if(top == true && darth_y >= 30) {
+            darth_y -= 1.0;
+        }
 
-	if(teclas[ALLEGRO_KEY_UP] && darth_y >= 0) {
-            darth_y -= 2.0;
+         if(booton == true && darth_y <= SCREEN_H - darthA) {
+            darth_y += 1.0;
          }
 
-         if(teclas[ALLEGRO_KEY_DOWN] && darth_y <= SCREEN_H - darthA) {
-            darth_y += 2.0;
+         if(left == true && darth_x >= 170) {
+            darth_x -= 1.0; 
          }
 
-         if(teclas[ALLEGRO_KEY_LEFT] && darth_x >= 0) {
-            darth_x -= 2.0;
-         }
+         if(right == true && darth_x <= SCREEN_W - darthL) {
 
-         if(teclas[ALLEGRO_KEY_RIGHT] && darth_x <= SCREEN_W - darthL) {
-            darth_x += 2.0;
+            darth_x += 1.0;
          }
 
          re_desenha = true;
       }
+
       else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
          break;
       }
@@ -213,7 +267,7 @@ int main(int argc, char **argv)
       else if(ev.type == ALLEGRO_EVENT_KEY_UP) { //Tecla X Liberada
          teclas[ev.keyboard.keycode] = false;
          if(ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE) 
-	    termina = true;
+	     termina = true;
              
       }
 
@@ -224,10 +278,11 @@ int main(int argc, char **argv)
 	 if(teclaD)
             //al_draw_bitmap(darth, darth_x, darth_y, 0);
             al_draw_bitmap(image, 0, 0, 0);
-            al_draw_bitmap_region(darth, 0, sprite*darthA, darthL, darthA, darth_x, darth_y, 0);
+            al_draw_bitmap_region(darth, lado*darthL, sprite*darthA, darthL, darthA, darth_x, darth_y, 0);
 
          al_flip_display();
       }
+      al_draw_text(font20, al_map_rgb(255, 0, 0), 50, 50, NULL, "Ola Mundo");
    }
 
    //Destroi componentes
