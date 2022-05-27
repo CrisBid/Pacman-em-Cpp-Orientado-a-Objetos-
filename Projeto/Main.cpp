@@ -239,20 +239,20 @@ int main(int argc, char **argv)
         lado = 0;
     }
 	    if(top == true && darth_y >= 30) {
-            darth_y -= 1.0;
+            darth_y -= 2.0;
         }
 
-         if(booton == true && darth_y <= SCREEN_H - darthA) {
-            darth_y += 1.0;
+         if(booton == true && darth_y <= 665 - darthA) {
+            darth_y += 2.0;
          }
 
          if(left == true && darth_x >= 170) {
-            darth_x -= 1.0; 
+            darth_x -= 2.0; 
          }
 
-         if(right == true && darth_x <= SCREEN_W - darthL) {
+         if(right == true && darth_x <= 815 - darthL) {
 
-            darth_x += 1.0;
+            darth_x += 2.0;
          }
 
          re_desenha = true;
