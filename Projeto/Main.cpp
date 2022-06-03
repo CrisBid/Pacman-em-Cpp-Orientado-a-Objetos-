@@ -11,8 +11,8 @@
 using namespace std;
 
 const float FPS = 60;
-const int SCREEN_W = 984;
-const int SCREEN_H = 701;
+const int SCREEN_W = 964;//Tab Interno 630 = 21*30
+const int SCREEN_H = 750;//Tab Interno x   = x*30
 
 int main(int argc, char **argv)
 {
@@ -27,8 +27,10 @@ int main(int argc, char **argv)
    //ALLEGRO_SAMPLE *sample=NULL, *sample2=NULL;
    //ALLEGRO_SAMPLE_INSTANCE *instance = NULL, *instance2 = NULL;
 
-   float darth_x = 170;
-   float darth_y = 30;
+   float darth_x = 165;
+   float darth_y = 60;
+
+   int darthL = 30, darthA = 30;//Largura e Altura
 
    //Vetor de Teclas
    bool teclas[255] = {false};
@@ -107,7 +109,7 @@ int main(int argc, char **argv)
    ALLEGRO_FONT* font20 = al_load_font("src/Fonts/Roboto-Regular.ttf", 20, NULL);
 
    ALLEGRO_BITMAP  *darth;
-   int darthL = 30, darthA = 30;//Largura e Altura
+
    darth = al_load_bitmap("src/Images/pacman.png");//200x600
    if(!darth) {
       fprintf(stderr, "failed to create darth bitmap!\n");
@@ -163,7 +165,7 @@ int main(int argc, char **argv)
    int tempo, miliseg = 200;
 
    bool top = false;
-   bool right = true;
+   bool right = false;
    bool booton = false;
    bool left = false;
    int lado = 0;
@@ -231,19 +233,19 @@ int main(int argc, char **argv)
         left = false;
         lado = 0;
     }
-	    if(top == true && darth_y >= 30) {
+	    if(top == true && darth_y >= 60) {
             darth_y -= 2.0;
         }
 
-         if(booton == true && darth_y <= 665 - darthA) {
+         if(booton == true && darth_y <= 680 - darthA) {
             darth_y += 2.0;
          }
 
-         if(left == true && darth_x >= 170) {
+         if(left == true && darth_x >= 165) {
             darth_x -= 2.0; 
          }
 
-         if(right == true && darth_x <= 815 - darthL) {
+         if(right == true && darth_x <= 795 - darthL) {
 
             darth_x += 2.0;
          }
