@@ -13,46 +13,63 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Arquivos de Recurso\images">
+      <UniqueIdentifier>{eadac94f-c41e-4d18-bcc4-357241b6b06c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="imperial_march.wav">
-      <Filter>Arquivos de Origem</Filter>
-    </Media>
     <Media Include="vader.wav">
-      <Filter>Arquivos de Origem</Filter>
-    </Media>
-    <Media Include="pacman_comer_semente.wav">
-      <Filter>Arquivos de Origem</Filter>
-    </Media>
-    <Media Include="pacman_menu.wav">
-      <Filter>Arquivos de Origem</Filter>
+      <Filter>Arquivos de Recurso</Filter>
     </Media>
     <Media Include="pacman_morte.wav">
-      <Filter>Arquivos de Origem</Filter>
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="pacman_menu.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="pacman_comer_semente.wav">
+      <Filter>Arquivos de Recurso</Filter>
+    </Media>
+    <Media Include="imperial_march.wav">
+      <Filter>Arquivos de Recurso</Filter>
     </Media>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="image.png">
+      <Filter>Arquivos de Recurso\images</Filter>
+    </Image>
     <Image Include="SpriteDarth2.png">
-      <Filter>Arquivos de Origem</Filter>
+      <Filter>Arquivos de Recurso\images</Filter>
     </Image>
     <Image Include="WhatsApp Image 2022-05-25 at 10.08.51.jpeg">
-      <Filter>Arquivos de Origem</Filter>
-    </Image>
-    <Image Include="image.png">
-      <Filter>Arquivos de Origem</Filter>
+      <Filter>Arquivos de Recurso\images</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="Mapa.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Tijolo.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Roboto-Regular.ttf">
-      <Filter>Arquivos de Origem</Filter>
+      <Filter>Arquivos de Recurso</Filter>
     </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Tijolinho.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Mapa.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
