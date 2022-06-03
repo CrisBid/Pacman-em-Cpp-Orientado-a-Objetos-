@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <allegro5/allegro5.h>
-#include "Mapa.h"
+#include "../Libs_H/Mapa.h"
 
 using namespace std;
 

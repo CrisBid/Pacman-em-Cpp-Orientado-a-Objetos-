@@ -144,28 +144,27 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="imperial_march.wav" />
-    <Media Include="pacman_comer_semente.wav" />
-    <Media Include="pacman_menu.wav" />
-    <Media Include="pacman_morte.wav" />
-    <Media Include="vader.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="SpriteDarth2.png" />
-    <Image Include="WhatsApp Image 2022-05-25 at 10.08.51.jpeg" />
-    <Image Include="image.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Mapa.cpp" />
-    <ClCompile Include="Tijolo.cpp" />
+    <ClCompile Include="src\Codigo\Libs_C\Mapa.cpp" />
+    <ClCompile Include="src\Codigo\Libs_C\Tijolo.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="Roboto-Regular.ttf" />
+    <ClInclude Include="src\Codigo\Libs_H\Mapa.h" />
+    <ClInclude Include="src\Codigo\Libs_H\Tijolinho.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Mapa.h" />
-    <ClInclude Include="Tijolinho.h" />
+    <Media Include="src\Audios\imperial_march.wav" />
+    <Media Include="src\Audios\pacman_comer_semente.wav" />
+    <Media Include="src\Audios\pacman_menu.wav" />
+    <Media Include="src\Audios\pacman_morte.wav" />
+    <Media Include="src\Audios\vader.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="src\Fonts\Roboto-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\Images\mapa.png" />
+    <Image Include="src\Images\Pacman.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

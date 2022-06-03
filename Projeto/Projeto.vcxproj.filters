@@ -13,63 +13,69 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Arquivos de Recurso\images">
+    <Filter Include="Arquivos de Recurso\Audios">
+      <UniqueIdentifier>{3ffaa65b-1ac7-43dd-a93c-b36dcda26309}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Recurso\Images">
       <UniqueIdentifier>{eadac94f-c41e-4d18-bcc4-357241b6b06c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Recurso\Fontes">
+      <UniqueIdentifier>{c06ac96b-1f37-46fd-aa25-d38f7408c09a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\Bibliotecas">
+      <UniqueIdentifier>{922fac9e-f6ff-4cb1-9e7c-71f6e4b3a96a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="vader.wav">
-      <Filter>Arquivos de Recurso</Filter>
-    </Media>
-    <Media Include="pacman_morte.wav">
-      <Filter>Arquivos de Recurso</Filter>
-    </Media>
-    <Media Include="pacman_menu.wav">
-      <Filter>Arquivos de Recurso</Filter>
-    </Media>
-    <Media Include="pacman_comer_semente.wav">
-      <Filter>Arquivos de Recurso</Filter>
-    </Media>
-    <Media Include="imperial_march.wav">
-      <Filter>Arquivos de Recurso</Filter>
-    </Media>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="image.png">
-      <Filter>Arquivos de Recurso\images</Filter>
-    </Image>
-    <Image Include="SpriteDarth2.png">
-      <Filter>Arquivos de Recurso\images</Filter>
-    </Image>
-    <Image Include="WhatsApp Image 2022-05-25 at 10.08.51.jpeg">
-      <Filter>Arquivos de Recurso\images</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
+    <ClCompile Include="src\Codigo\Libs_C\Mapa.cpp">
+      <Filter>Arquivos de Origem\Bibliotecas</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Codigo\Libs_C\Tijolo.cpp">
+      <Filter>Arquivos de Origem\Bibliotecas</Filter>
+    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Mapa.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Tijolo.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="Roboto-Regular.ttf">
-      <Filter>Arquivos de Recurso</Filter>
+    <ClInclude Include="src\Codigo\Libs_H\Mapa.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Codigo\Libs_H\Tijolinho.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="src\Audios\imperial_march.wav">
+      <Filter>Arquivos de Recurso\Audios</Filter>
+    </Media>
+    <Media Include="src\Audios\pacman_comer_semente.wav">
+      <Filter>Arquivos de Recurso\Audios</Filter>
+    </Media>
+    <Media Include="src\Audios\pacman_menu.wav">
+      <Filter>Arquivos de Recurso\Audios</Filter>
+    </Media>
+    <Media Include="src\Audios\pacman_morte.wav">
+      <Filter>Arquivos de Recurso\Audios</Filter>
+    </Media>
+    <Media Include="src\Audios\vader.wav">
+      <Filter>Arquivos de Recurso\Audios</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="src\Fonts\Roboto-Regular.ttf">
+      <Filter>Arquivos de Recurso\Fontes</Filter>
     </Font>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Tijolinho.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Mapa.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
+    <Image Include="src\Images\mapa.png">
+      <Filter>Arquivos de Recurso\Images</Filter>
+    </Image>
+    <Image Include="src\Images\Pacman.png">
+      <Filter>Arquivos de Recurso\Images</Filter>
+    </Image>
   </ItemGroup>
 </Project>

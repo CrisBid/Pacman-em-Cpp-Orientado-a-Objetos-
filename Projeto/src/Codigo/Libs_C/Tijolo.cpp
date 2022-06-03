@@ -3,8 +3,7 @@
 #include <stdio.h>
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_image.h>
-#include "Mapa.h"
-#include "Tijolinho.h"
+#include "../Libs_H/Tijolinho.h"
 
 using namespace std;
 

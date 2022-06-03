@@ -7,7 +7,6 @@
 #include "allegro5/allegro_acodec.h"
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
-#include "Mapa.cpp"
 
 using namespace std;
 
@@ -25,8 +24,8 @@ int main(int argc, char **argv)
    ALLEGRO_TIMER *timer = NULL;
 
    //Ponteiros de Audio
-   ALLEGRO_SAMPLE *sample=NULL, *sample2=NULL;
-   ALLEGRO_SAMPLE_INSTANCE *instance = NULL, *instance2 = NULL;
+   //ALLEGRO_SAMPLE *sample=NULL, *sample2=NULL;
+   //ALLEGRO_SAMPLE_INSTANCE *instance = NULL, *instance2 = NULL;
 
    float darth_x = 170;
    float darth_y = 30;
@@ -59,7 +58,7 @@ int main(int argc, char **argv)
    }
    
    //Funcoes de Audio
-   al_install_audio();
+   /*al_install_audio();
    al_init_acodec_addon();
    al_reserve_samples(2);//Quantidade de Audios
 	
@@ -80,7 +79,7 @@ int main(int argc, char **argv)
    if (!sample2){
       printf( "Audio clip sample not loaded!\n" ); 
       return -1;
-   }
+   }*/
 
    //Tela
    display = al_create_display(SCREEN_W, SCREEN_H);
@@ -94,7 +93,7 @@ int main(int argc, char **argv)
 
    ALLEGRO_BITMAP* image = NULL; //Imagem
 
-   image = al_load_bitmap("image.png");
+   image = al_load_bitmap("src/Images/mapa.png");
 
    if (!image) {
        fprintf(stderr, "failed to create image bitmap!\n");
@@ -105,18 +104,11 @@ int main(int argc, char **argv)
 
    al_draw_bitmap(image, 0, 0, 0); //Desenha a imagem
 
-   ALLEGRO_BITMAP* objeto = NULL; //Imagem
-
-   int objetoL = 50, objetoA = 500, objeto_x = 500, objeto_y = 0;//Largura e Altura
-   objeto = al_load_bitmap("image.png");//200x600
-   //al_draw_bitmap(darth, darth_x, darth_y, 0);
-   al_draw_bitmap_region(objeto, 0, 0, objetoL, objetoA, objeto_x, objeto_y, 0);
-
-   ALLEGRO_FONT* font20 = al_load_font("Roboto-Regular.ttf", 20, NULL);
+   ALLEGRO_FONT* font20 = al_load_font("src/Fonts/Roboto-Regular.ttf", 20, NULL);
 
    ALLEGRO_BITMAP  *darth;
-   int darthL = 32, darthA = 32;//Largura e Altura
-   darth = al_load_bitmap("Pacman.png");//200x600
+   int darthL = 30, darthA = 30;//Largura e Altura
+   darth = al_load_bitmap("src/Images/pacman.png");//200x600
    if(!darth) {
       fprintf(stderr, "failed to create darth bitmap!\n");
       al_destroy_display(display);
@@ -190,22 +182,22 @@ int main(int argc, char **argv)
            al_set_timer_count(timer, 0);//Volta ao tempo 0
            sprite = sprite + fator; //0 1 2 3 2 1 0     
            if(sprite == 0) fator = 1;
-           if(sprite == 1) fator = -1;
+           if(sprite == 2) fator = -1;
         } 
 
         
         
 
-	if(teclas[ALLEGRO_KEY_O]){
+	/*if (teclas[ALLEGRO_KEY_O]) {
 	   al_stop_sample_instance(instance);
 	}   
 	if(teclas[ALLEGRO_KEY_I]){
 	   al_play_sample_instance(instance);
 	}	
-
-	if(teclas[ALLEGRO_KEY_D] && !teclaD){
+    */
+	if (teclas[ALLEGRO_KEY_D] && !teclaD) {
 	   teclaD = true;
-	   al_play_sample(sample2, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);//al_play_sample_instance(instance2);
+	   //al_play_sample(sample2, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);//al_play_sample_instance(instance2);
 	}
     if (teclas[ALLEGRO_KEY_UP])
     {
@@ -267,9 +259,9 @@ int main(int argc, char **argv)
       }
       else if(ev.type == ALLEGRO_EVENT_KEY_UP) { //Tecla X Liberada
          teclas[ev.keyboard.keycode] = false;
+         
          if(ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE) 
-	     termina = true;
-             
+	        termina = true;
       }
 
       if(re_desenha && al_is_event_queue_empty(event_queue)) { //Redesenha se a fila de eventos esta vazia
@@ -292,10 +284,10 @@ int main(int argc, char **argv)
    al_destroy_timer(timer);
    al_destroy_display(display);
    al_destroy_bitmap(image); //Destroi a imagem
-   al_destroy_sample(sample);
-   al_destroy_sample_instance(instance);
-   al_destroy_sample(sample2);
-   al_destroy_sample_instance(instance2);
+   //al_destroy_sample(sample);
+   //al_destroy_sample_instance(instance);
+   //al_destroy_sample(sample2);
+   //al_destroy_sample_instance(instance2);
    al_destroy_event_queue(event_queue);
 
    return 0;
