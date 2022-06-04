@@ -144,27 +144,30 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Codigo\Mapa.cpp" />
+    <ClCompile Include="Codigo\Tijolinho.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="src\Codigo\Libs_C\Mapa.cpp" />
-    <ClCompile Include="src\Codigo\Libs_C\Tijolo.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Codigo\Libs_H\Mapa.h" />
-    <ClInclude Include="src\Codigo\Libs_H\Tijolinho.h" />
+    <ClInclude Include="Codigo\Mapa.h" />
+    <ClInclude Include="Codigo\Tijolinho.h" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="src\Audios\imperial_march.wav" />
-    <Media Include="src\Audios\pacman_comer_semente.wav" />
-    <Media Include="src\Audios\pacman_menu.wav" />
-    <Media Include="src\Audios\pacman_morte.wav" />
-    <Media Include="src\Audios\vader.wav" />
+    <Image Include="Images\bloco.png" />
+    <Image Include="Images\mapa.png" />
+    <Image Include="Images\Pacman.png" />
+    <Image Include="Images\trans.png" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="src\Fonts\Roboto-Regular.ttf" />
+    <Text Include="Arquivos\Mapa.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="src\Images\mapa.png" />
-    <Image Include="src\Images\Pacman.png" />
+    <Font Include="Fonts\Roboto-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Audios\pacman_comer_semente.wav" />
+    <Media Include="Audios\pacman_menu.wav" />
+    <Media Include="Audios\pacman_morte.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

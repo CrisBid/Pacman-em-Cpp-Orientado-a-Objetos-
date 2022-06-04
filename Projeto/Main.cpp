@@ -7,6 +7,8 @@
 #include "allegro5/allegro_acodec.h"
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
+#include "Codigo/Tijolinho.h"
+#include "Codigo/Mapa.h"
 
 using namespace std;
 
@@ -14,7 +16,7 @@ const float FPS = 60;
 const int SCREEN_W = 964;//Tab Interno 630 = 21*30
 const int SCREEN_H = 750;//Tab Interno x   = x*30
 
-int main(int argc, char **argv)
+/*int main(int argc, char** argv)
 {
    ALLEGRO_DISPLAY *display = NULL;
 
@@ -81,7 +83,7 @@ int main(int argc, char **argv)
    if (!sample2){
       printf( "Audio clip sample not loaded!\n" ); 
       return -1;
-   }*/
+   }
 
    //Tela
    display = al_create_display(SCREEN_W, SCREEN_H);
@@ -129,7 +131,7 @@ int main(int argc, char **argv)
 		sh - Altura da regiao na imagem
 		dx - posicao x na tela
 		dy - posicao y na tela
-   */
+   
 
 
    //Eventos
@@ -196,7 +198,7 @@ int main(int argc, char **argv)
 	if(teclas[ALLEGRO_KEY_I]){
 	   al_play_sample_instance(instance);
 	}	
-    */
+    
 	if (teclas[ALLEGRO_KEY_D] && !teclaD) {
 	   teclaD = true;
 	   //al_play_sample(sample2, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);//al_play_sample_instance(instance2);
@@ -293,4 +295,21 @@ int main(int argc, char **argv)
    al_destroy_event_queue(event_queue);
 
    return 0;
+}*/
+
+int main() {
+
+    al_init();
+    al_init_image_addon();
+
+    Mapa mapa;
+    Tijolinho Tijolos;
+    mapa.getDisplay(SCREEN_W, SCREEN_H); // 21- 31
+    Tijolos.draw();
+    al_rest(20);
+    mapa.destroiDisplay();
+    Tijolos.destroyDraw();
+
+    return 0;
 }
+

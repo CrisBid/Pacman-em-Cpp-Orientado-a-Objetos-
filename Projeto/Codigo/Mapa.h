@@ -10,6 +10,9 @@ public:
 	void destroiDisplay();
 private:
 	ALLEGRO_DISPLAY* display;
+
+	ALLEGRO_BITMAP* image;
+
 };
 
 #endif
