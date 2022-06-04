@@ -9,8 +9,8 @@ using namespace std;
 #ifndef TIJOLINHO_H
 #define TIJOLINHO_H
 
-const int largura = 66;//Tab Interno 630 = 21*30
-const int altura = 60;//Tab Interno x   = x*30
+const int largura = 66;//Tab Interno 660 = 66*10
+const int altura = 64; //Tab Interno 640 = 64*10
 
 class Tijolinho {
 	public:
