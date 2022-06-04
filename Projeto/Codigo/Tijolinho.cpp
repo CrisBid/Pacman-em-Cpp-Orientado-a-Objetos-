@@ -29,9 +29,19 @@ Tijolinho::Tijolinho() {
 		}
 	}
 	//Inicialição do objeto dos Tijolos
-	blocopng = NULL;
-	blocopng = al_load_bitmap("Images/bloco.png");
-	if (!blocopng) {
+	tijolo = NULL;
+	tijolo = al_load_bitmap("Images/bloco.png");
+	if (!tijolo) {
+		printf("ERRO NO BLOCO");
+	}
+	else {
+		printf("\nBloco criado com sucesso\n");
+	}
+
+	//Inicialição do objeto das Pirulas
+	pirula = NULL;
+	pirula = al_load_bitmap("Images/pirula.png");
+	if (!pirula) {
 		printf("ERRO NO BLOCO");
 	}
 	else {
@@ -47,7 +57,11 @@ void Tijolinho::draw() {
 			if (matriz[i][j]==1)
 			{
 				//al_draw_bitmap(blocopng, 130+(10 * j), 60+(10 * i), 0);
-				al_draw_bitmap_region(blocopng, 0, 0, 10, 10, 150 + (10 * j), 50 + (10 * i), 0);
+				al_draw_bitmap_region(tijolo, 0, 0, 10, 10, 150 + (10 * j), 50 + (10 * i), 0);
+			}
+			if (matriz[i][j] == 2)
+			{
+				al_draw_bitmap_region(pirula, 0, 0, 10, 10, 150 + (10 * j), 50 + (10 * i), 0);
 			}
 		}
 	}
@@ -56,6 +70,6 @@ void Tijolinho::draw() {
 }
 
 void Tijolinho::destroyDraw() {
-	al_destroy_bitmap(blocopng);// destroi os tijolos
+	al_destroy_bitmap(tijolo);// destroi os tijolos
 	inFile.close();// Fecha o arquivo
 }

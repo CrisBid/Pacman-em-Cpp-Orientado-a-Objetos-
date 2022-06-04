@@ -18,7 +18,9 @@ class Tijolinho {
 		void draw();
 		void destroyDraw();
 	;private:
-		ALLEGRO_BITMAP* blocopng;
+		ALLEGRO_BITMAP* tijolo;
+
+		ALLEGRO_BITMAP* pirula;
 
 		int l_matriz = largura, a_matriz = altura;
 
