@@ -10,7 +10,7 @@ using namespace std;
 #define TIJOLINHO_H
 
 const int largura = 66;//Tab Interno 630 = 21*30
-const int altura = 41;//Tab Interno x   = x*30
+const int altura = 60;//Tab Interno x   = x*30
 
 class Tijolinho {
 	public:
