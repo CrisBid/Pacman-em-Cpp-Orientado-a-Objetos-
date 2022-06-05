@@ -30,7 +30,7 @@ Tijolinho::Tijolinho() {
 	}
 	//Inicialição do objeto dos Tijolos
 	tijolo = NULL;
-	tijolo = al_load_bitmap("Images/bloco.png");
+	tijolo = al_load_bitmap("Images/trans.png");
 	if (!tijolo) {
 		printf("ERRO NO BLOCO");
 	}
