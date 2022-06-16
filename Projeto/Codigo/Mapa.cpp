@@ -2,42 +2,40 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <allegro5/allegro5.h>
+
 #include "Mapa.h"
+#include "Pirula.h"
 
 using namespace std;
 
 Mapa::Mapa() {
-
-	display = NULL;
-
-	if (!display) {
-		printf("Tabuleiro criado com sucesso!\n");
-	}
-
-	image = NULL; //Imagem
+	//Inicialização da imagem
+	image = NULL;
 
 	if (!image) {
 		printf("Imagem criado com sucesso!\n");
 	}
+
 }
 
-void Mapa::getDisplay(int w, int h) {
-	display = al_create_display(w, h);
 
-	if (display == NULL) {
-		printf("ERRO no display");
-		return;
-	}
-	al_clear_to_color(al_map_rgb(21, 10, 0));
-	al_flip_display();
+
+void Mapa::setMapa(sMatriz *matriz) {
 
 	image = al_load_bitmap("Images/mapa.png");
 
 	al_draw_bitmap(image, 0, 0, 0); //Desenha a imagem
+	
+	Tijolinho Tijolos;
+	Pirula Pirulas;
+
+	Tijolos.setTijolos(matriz);
+	
+	Pirulas.setPirula(matriz);
 
 }
 
-void Mapa::destroiDisplay() {
-	al_destroy_display(display); //Destroi a tela
+Mapa::~Mapa() {
+	al_destroy_bitmap(image); //Destroi a Imagem
 }
 

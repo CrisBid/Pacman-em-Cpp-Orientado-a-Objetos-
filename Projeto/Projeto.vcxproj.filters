@@ -28,26 +28,66 @@
     <Filter Include="Arquivos de Recurso\Arquivos">
       <UniqueIdentifier>{866fff9e-3e65-4689-9975-1d0768951353}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Arquivos de Origem\Bibliotecas\Mapa">
+      <UniqueIdentifier>{5c22297b-1ad0-4ad3-b329-0ac686ad9ff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\Bibliotecas\Mapa\Obejtos do Mapa">
+      <UniqueIdentifier>{3547bb69-7603-424e-b57e-c15fbd96257a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\Bibliotecas\Pacman">
+      <UniqueIdentifier>{fd6f3a0f-2e02-4878-ac7c-b797d3571884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Mapa">
+      <UniqueIdentifier>{dcc1b04f-a16e-452e-92c2-cd87647a38e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Matriz">
+      <UniqueIdentifier>{b95ad9fa-0075-4fee-a340-eab97e3a6cee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Mapa\Objetos do Mapa">
+      <UniqueIdentifier>{b166cda1-22a9-4252-86c0-6aabfd5d3149}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Codigo\Mapa.cpp">
+    <ClCompile Include="Codigo\Matriz.cpp">
       <Filter>Arquivos de Origem\Bibliotecas</Filter>
     </ClCompile>
+    <ClCompile Include="Codigo\Pirula.cpp">
+      <Filter>Arquivos de Origem\Bibliotecas\Mapa\Obejtos do Mapa</Filter>
+    </ClCompile>
     <ClCompile Include="Codigo\Tijolinho.cpp">
+      <Filter>Arquivos de Origem\Bibliotecas\Mapa\Obejtos do Mapa</Filter>
+    </ClCompile>
+    <ClCompile Include="Codigo\Mapa.cpp">
+      <Filter>Arquivos de Origem\Bibliotecas\Mapa</Filter>
+    </ClCompile>
+    <ClCompile Include="Codigo\Display.cpp">
       <Filter>Arquivos de Origem\Bibliotecas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Codigo\StructMatriz.h">
+      <Filter>Arquivos de Cabeçalho\Matriz</Filter>
+    </ClInclude>
+    <ClInclude Include="Codigo\Matriz.h">
+      <Filter>Arquivos de Cabeçalho\Matriz</Filter>
+    </ClInclude>
     <ClInclude Include="Codigo\Mapa.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
+      <Filter>Arquivos de Cabeçalho\Mapa</Filter>
+    </ClInclude>
+    <ClInclude Include="Codigo\Pirula.h">
+      <Filter>Arquivos de Cabeçalho\Mapa\Objetos do Mapa</Filter>
     </ClInclude>
     <ClInclude Include="Codigo\Tijolinho.h">
+      <Filter>Arquivos de Cabeçalho\Mapa\Objetos do Mapa</Filter>
+    </ClInclude>
+    <ClInclude Include="Codigo\Display.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>

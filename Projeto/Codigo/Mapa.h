@@ -1,18 +1,19 @@
-
+#include "Tijolinho.h"
 #include <allegro5/allegro5.h>
+
+using namespace std;
+
 #ifndef MAPA_H
 #define MAPA_H
 
 class Mapa {
 public:
 	Mapa();
-	void getDisplay(int w, int h);
-	void destroiDisplay();
+	void setMapa(sMatriz*);
+	~Mapa();
 private:
-	ALLEGRO_DISPLAY* display;
 
 	ALLEGRO_BITMAP* image;
-
 };
 
 #endif
