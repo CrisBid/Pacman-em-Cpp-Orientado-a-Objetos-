@@ -46,6 +46,9 @@
     <Filter Include="Arquivos de Cabeçalho\Mapa\Objetos do Mapa">
       <UniqueIdentifier>{b166cda1-22a9-4252-86c0-6aabfd5d3149}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Pacman">
+      <UniqueIdentifier>{56dfdd3d-4761-4382-87a1-6e1da8ac92ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -70,6 +73,9 @@
     <ClCompile Include="Codigo\Display.cpp">
       <Filter>Arquivos de Origem\Bibliotecas</Filter>
     </ClCompile>
+    <ClCompile Include="Codigo\Pacman.cpp">
+      <Filter>Arquivos de Origem\Bibliotecas\Pacman</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Codigo\StructMatriz.h">
@@ -89,6 +95,9 @@
     </ClInclude>
     <ClInclude Include="Codigo\Display.h">
       <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Codigo\Pacman.h">
+      <Filter>Arquivos de Cabeçalho\Pacman</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -21,9 +21,6 @@ Pirula::Pirula() {
 	if (!pirula) {
 		printf("ERRO NO BLOCO");
 	}
-	else {
-		printf("\nBloco criado com sucesso\n");
-	}
 }
 
 
@@ -39,8 +36,6 @@ void Pirula::setPirula(sMatriz* matriz) {
 			}
 		}
 	}
-	al_flip_display();
-
 }
 
 Pirula::~Pirula() {

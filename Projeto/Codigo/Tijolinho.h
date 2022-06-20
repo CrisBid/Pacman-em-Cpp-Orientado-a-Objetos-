@@ -14,6 +14,9 @@ class Tijolinho {
 		~Tijolinho();
 	;private:
 		ALLEGRO_BITMAP* tijolo;
+		ALLEGRO_BITMAP* tijoloE;
+		ALLEGRO_BITMAP* tijoloM;
+		ALLEGRO_BITMAP* tijoloD;
 };
 
 #endif // !BLOCO_H

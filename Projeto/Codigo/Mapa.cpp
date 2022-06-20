@@ -3,8 +3,9 @@
 #include <stdio.h>
 #include <allegro5/allegro5.h>
 
-#include "Mapa.h"
 #include "Pirula.h"
+
+#include "Mapa.h"
 
 using namespace std;
 
@@ -17,15 +18,24 @@ Mapa::Mapa() {
 	}
 
 }
+/*
+ALLEGRO_BITMAP* Mapa::loadImage() {
+	
+	if (!image) {
+		printf("Falha ao Criar Imagem!\n");
+	}
+	return image;
+}
+
+ALLEGRO_BITMAP* Mapa::getImage() {
+	return image;
+}*/
 
 
 
 void Mapa::setMapa(sMatriz *matriz) {
 
-	image = al_load_bitmap("Images/mapa.png");
 
-	al_draw_bitmap(image, 0, 0, 0); //Desenha a imagem
-	
 	Tijolinho Tijolos;
 	Pirula Pirulas;
 

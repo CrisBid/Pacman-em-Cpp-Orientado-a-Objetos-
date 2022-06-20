@@ -118,6 +118,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,6 +150,7 @@
     <ClCompile Include="Codigo\Display.cpp" />
     <ClCompile Include="Codigo\Mapa.cpp" />
     <ClCompile Include="Codigo\Matriz.cpp" />
+    <ClCompile Include="Codigo\Pacman.cpp" />
     <ClCompile Include="Codigo\Pirula.cpp" />
     <ClCompile Include="Codigo\Tijolinho.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -156,6 +159,7 @@
     <ClInclude Include="Codigo\Display.h" />
     <ClInclude Include="Codigo\Matriz.h" />
     <ClInclude Include="Codigo\Mapa.h" />
+    <ClInclude Include="Codigo\Pacman.h" />
     <ClInclude Include="Codigo\Pirula.h" />
     <ClInclude Include="Codigo\StructMatriz.h" />
     <ClInclude Include="Codigo\Tijolinho.h" />

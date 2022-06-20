@@ -9,6 +9,8 @@ using namespace std;
 class Mapa {
 public:
 	Mapa();
+	ALLEGRO_BITMAP* loadImage();
+	ALLEGRO_BITMAP* getImage();
 	void setMapa(sMatriz*);
 	~Mapa();
 private:

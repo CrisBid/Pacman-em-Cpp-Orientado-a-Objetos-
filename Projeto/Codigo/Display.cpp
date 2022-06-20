@@ -30,8 +30,6 @@ void Display::setDisplay(int w, int h) {
 		printf("ERRO no display");
 		return;
 	}
-	al_clear_to_color(al_map_rgb(21, 10, 0));
-	al_flip_display();
 }
 
 Display::~Display()
