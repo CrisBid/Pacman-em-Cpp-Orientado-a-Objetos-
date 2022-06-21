@@ -17,7 +17,7 @@ Pirula::Pirula() {
 
 	//Inicialição do objeto das Pirulas
 	pirula = NULL;
-	pirula = al_load_bitmap("Images/pirula.png");
+	pirula = al_load_bitmap("Images/Mapa/MeioBiscoito.png");
 	if (!pirula) {
 		printf("ERRO NO BLOCO");
 	}

@@ -13,6 +13,8 @@
 #include "Codigo/Matriz.h"
 #include "Codigo/Display.h"
 
+#include <math.h>
+
 using namespace std;
 
 const float FPS = 30;
@@ -129,11 +131,29 @@ int main() {
     int colisaoYL = 0;
     int colisaoXT = 0;
     int colisaoYT = 0;
-    int colisaoXB = 0;
-    int colisaoYB = 0;
 
     int colisaoYPirula = 0;
     int colisaoXPirula = 0;
+
+    int colisaoYC = 0;
+    int colisaoXC = 0;
+    int colisaoYCN = 0;
+    int colisaoXCN = 0;
+
+    int colisaoYE = 0;
+    int colisaoXE = 0;
+    int colisaoYEN = 0;
+    int colisaoXEN = 0;
+
+    int colisaoYD = 0;
+    int colisaoXD = 0;
+    int colisaoYDN = 0;
+    int colisaoXDN = 0;
+
+    int colisaoXB = 0;
+    int colisaoYB = 0;
+    int colisaoXBN = 0;
+    int colisaoYBN = 0;
 
     bool top = false;
     bool right = false;
@@ -146,19 +166,41 @@ int main() {
     {
        
         //Coverte de pixel para a posição relativa na matriz
-        colisaoYR = ((darth_y - 40) / 10);
+        /*colisaoYR = ((darth_y - 40) / 10);
         colisaoXR = ((darth_x - 120) / 10);
         colisaoYL = ((darth_y - 40) / 10);
         colisaoXL = ((darth_x - 150) / 10);
         colisaoYT = ((darth_y - 50) / 10);
         colisaoXT = ((darth_x - 140) / 10);
         colisaoYB = ((darth_y - 20) / 10);
-        colisaoXB = ((darth_x - 140) / 10);
+        colisaoXB = ((darth_x - 140) / 10);*/
+
         colisaoYPirula = ((darth_y - 40) / 10);
         colisaoXPirula = ((darth_x - 140) / 10);
 
+        colisaoYC = ceil(((darth_y - 40) / 10));
+        colisaoXC = ((darth_x - 140) / 10);
+        colisaoYCN = ceil(((darth_y - 40) / 10));
+        colisaoXCN = ceil(((darth_x - 140) / 10));
+
+        colisaoYE = ceil(((darth_y - 40) / 10));
+        colisaoXE = ceil(((darth_x - 140) / 10));
+        colisaoYEN = ((darth_y - 40) / 10);
+        colisaoXEN = ceil(((darth_x - 140) / 10));
+
+        colisaoYD = ceil(((darth_y - 40) / 10));
+        colisaoXD = ((darth_x - 140) / 10);
+        colisaoYDN = ((darth_y - 40) / 10);
+        colisaoXDN = ((darth_x - 140) / 10);
+
+        colisaoYB = (((darth_y - 40) / 10));
+        colisaoXB = ceil(((darth_x - 140) / 10));
+        colisaoYBN = (((darth_y - 40) / 10));
+        colisaoXBN = (((darth_x - 140) / 10));
+
         //Verifica as colisoes do Pacman
 
+        /*
         if (ptrmatriz->dados_matriz[colisaoYR][colisaoXR] == 1)
         {
             colisaoR = true;
@@ -194,32 +236,33 @@ int main() {
             colisaoT = false;
             colisaoB = false;
         }
+        */
 
         //cout << "Dados da matriz: y" << colisaoYPirula<< "x" << colisaoXPirula << endl;
         if (ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula] == 2)
         {
-            ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula] = 0;
+            ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula] = 16;
             placar++;
             cout << placar << endl;
             //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula] << endl;
         }
         if (ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula + 1] == 2)
         {
-            ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula + 1] = 0;
+            ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula + 1] = 16;
             placar++;
             cout << placar << endl;
             //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula+1][colisaoXPirula+1] << endl;
         }
         if (ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula + 1] == 2)
         {
-            ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula + 1] = 0;
+            ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula + 1] = 16;
             placar++;
             cout << placar << endl;
             //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula+1] << endl;
         }
         if (ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula] == 2)
         {
-            ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula] = 0;
+            ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula] = 16;
             placar++;
             cout << placar << endl;
             //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula] << endl;
@@ -227,35 +270,35 @@ int main() {
         }
         if (ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula - 1] == 2)
         {
-            ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula - 1] = 0;
+            ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula - 1] = 16;
             placar++;
             cout << placar << endl;
             //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula-1] << endl;
         }
         if (ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula] == 2)
         {
-            ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula] = 0;
+            ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula] = 16;
             placar++;
             cout << placar << endl;
             //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula-1][colisaoXPirula] << endl;
         }
         if (ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula - 1] == 2)
         {
-            ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula - 1] = 0;
+            ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula - 1] = 16;
             placar++;
             cout << placar << endl;
             //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula-1] << endl;
         }
         if (ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula - 1] == 2)
         {
-            ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula - 1] = 0;
+            ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula - 1] = 16;
             placar++;
             cout << placar << endl;
             //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula - 1] << endl;
         }
         if (ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula + 1] == 2)
         {
-            ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula + 1] = 0;
+            ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula + 1] = 16;
             placar++;
             cout << placar << endl;
             //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula + 1] << endl;
@@ -282,11 +325,11 @@ int main() {
                                         if (ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula + 1] != 1)
                                         {
                                             //Right
-                                            if (ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula + 2] != 1)
+                                            if (ptrmatriz->dados_matriz[colisaoYD][colisaoXD + 2] != 1 && ptrmatriz->dados_matriz[colisaoYDN][colisaoXDN + 2] != 1)
                                             {
-                                                if (ptrmatriz->dados_matriz[colisaoYPirula-1][colisaoXPirula + 2] != 1)
+                                                if (ptrmatriz->dados_matriz[colisaoYD-1][colisaoXD + 2] != 1 && ptrmatriz->dados_matriz[colisaoYDN - 1][colisaoXDN + 2] != 1)
                                                 {
-                                                    if (ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula + 2] != 1)
+                                                    if (ptrmatriz->dados_matriz[colisaoYD + 1][colisaoXD + 2] != 1 && ptrmatriz->dados_matriz[colisaoYDN + 1][colisaoXDN + 2] != 1)
                                                     {
                                                         espacoLivreR = true;
                                                     }
@@ -305,11 +348,11 @@ int main() {
                                                 espacoLivreR = false;
                                             }
                                             //Left
-                                            if (ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula - 2] != 1)
+                                            if (ptrmatriz->dados_matriz[colisaoYE][colisaoXE - 2] != 1 && ptrmatriz->dados_matriz[colisaoYEN][colisaoXEN - 2] != 1)
                                             {
-                                                if (ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula - 2] != 1)
+                                                if (ptrmatriz->dados_matriz[colisaoYE - 1][colisaoXE - 2] != 1 && ptrmatriz->dados_matriz[colisaoYEN - 1][colisaoXEN - 2] != 1)
                                                 {
-                                                    if (ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula - 2] != 1)
+                                                    if (ptrmatriz->dados_matriz[colisaoYE + 1][colisaoXE - 2] != 1 && ptrmatriz->dados_matriz[colisaoYEN + 1][colisaoXEN - 2] != 1)
                                                     {
                                                         espacoLivreL = true;
                                                     }
@@ -328,11 +371,11 @@ int main() {
                                                 espacoLivreL = false;
                                             }
                                             //Top
-                                            if (ptrmatriz->dados_matriz[colisaoYPirula - 2][colisaoXPirula - 1] != 1)
+                                            if (ptrmatriz->dados_matriz[colisaoYC - 2][colisaoXC - 1] != 1 && ptrmatriz->dados_matriz[colisaoYCN - 2][colisaoXCN - 1] != 1)
                                             {
-                                                if (ptrmatriz->dados_matriz[colisaoYPirula - 2][colisaoXPirula] != 1)
+                                                if (ptrmatriz->dados_matriz[colisaoYC - 2][colisaoXC] != 1 && ptrmatriz->dados_matriz[colisaoYCN - 2][colisaoXCN] != 1)
                                                 {
-                                                    if (ptrmatriz->dados_matriz[colisaoYPirula - 2][colisaoXPirula + 1] != 1)
+                                                    if (ptrmatriz->dados_matriz[colisaoYC - 2][colisaoXC + 1] != 1 && ptrmatriz->dados_matriz[colisaoYCN - 2][colisaoXCN + 1] != 1)
                                                     {
                                                         espacoLivreT = true;
                                                     }
@@ -351,11 +394,11 @@ int main() {
                                                 espacoLivreT = false;
                                             }
                                             //Button
-                                            if (ptrmatriz->dados_matriz[colisaoYPirula + 2][colisaoXPirula - 1] != 1)
+                                            if (ptrmatriz->dados_matriz[colisaoYB + 2][colisaoXB - 1] != 1 && ptrmatriz->dados_matriz[colisaoYBN + 2][colisaoXBN - 1] != 1)
                                             {
-                                                if (ptrmatriz->dados_matriz[colisaoYPirula + 2][colisaoXPirula] != 1)
+                                                if (ptrmatriz->dados_matriz[colisaoYB + 2][colisaoXB] != 1 && ptrmatriz->dados_matriz[colisaoYBN + 2][colisaoXBN] != 1)
                                                 {
-                                                    if (ptrmatriz->dados_matriz[colisaoYPirula + 2][colisaoXPirula + 1] != 1)
+                                                    if (ptrmatriz->dados_matriz[colisaoYB + 2][colisaoXB + 1] != 1 && ptrmatriz->dados_matriz[colisaoYBN + 2][colisaoXBN + 1] != 1)
                                                     {
                                                         espacoLivreB = true;
                                                     }
@@ -437,7 +480,7 @@ int main() {
             //Verifica se o camando pode ser executado e define as variaveis para que isso aconteça
 
             //Top
-            if (proximaIntrucao == ALLEGRO_KEY_UP && colisaoT == false && espacoLivreT == true)
+            if (proximaIntrucao == ALLEGRO_KEY_UP && espacoLivreT == true)
             {
                 top = true;
                 bottom = false;
@@ -446,7 +489,7 @@ int main() {
                 lado = 3;
             }
             //Bottom
-            if (proximaIntrucao == ALLEGRO_KEY_DOWN && colisaoB == false && espacoLivreB == true)
+            if (proximaIntrucao == ALLEGRO_KEY_DOWN && espacoLivreB == true)
             {
                 bottom = true;
                 top = false;
@@ -454,7 +497,7 @@ int main() {
                 right = false;
                 lado = 1;
             }
-            if (proximaIntrucao == ALLEGRO_KEY_LEFT && colisaoL == false && espacoLivreL == true)
+            if (proximaIntrucao == ALLEGRO_KEY_LEFT && espacoLivreL == true)
             {
                 left = true;
                 top = false;
@@ -462,7 +505,7 @@ int main() {
                 right = false;
                 lado = 2;
             }
-            if (proximaIntrucao == ALLEGRO_KEY_RIGHT && colisaoR == false && espacoLivreR == true)
+            if (proximaIntrucao == ALLEGRO_KEY_RIGHT && espacoLivreR == true)
             {
                 right = true;
                 top = false;
