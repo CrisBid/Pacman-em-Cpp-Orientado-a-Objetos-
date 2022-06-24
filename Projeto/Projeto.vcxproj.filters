@@ -49,6 +49,12 @@
     <Filter Include="Arquivos de Cabeçalho\Pacman">
       <UniqueIdentifier>{56dfdd3d-4761-4382-87a1-6e1da8ac92ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Arquivos de Origem\Bibliotecas\Placar">
+      <UniqueIdentifier>{1409db2a-8c91-45d0-836c-97715e78fa1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Placar">
+      <UniqueIdentifier>{e39a5eae-c146-4687-8cc9-4a8ce5c85db6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -76,6 +82,9 @@
     <ClCompile Include="Codigo\Pacman.cpp">
       <Filter>Arquivos de Origem\Bibliotecas\Pacman</Filter>
     </ClCompile>
+    <ClCompile Include="Codigo\Placar.cpp">
+      <Filter>Arquivos de Origem\Bibliotecas\Placar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Codigo\StructMatriz.h">
@@ -98,6 +107,9 @@
     </ClInclude>
     <ClInclude Include="Codigo\Pacman.h">
       <Filter>Arquivos de Cabeçalho\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="Codigo\Placar.h">
+      <Filter>Arquivos de Cabeçalho\Placar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

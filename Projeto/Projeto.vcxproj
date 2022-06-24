@@ -152,6 +152,7 @@
     <ClCompile Include="Codigo\Matriz.cpp" />
     <ClCompile Include="Codigo\Pacman.cpp" />
     <ClCompile Include="Codigo\Pirula.cpp" />
+    <ClCompile Include="Codigo\Placar.cpp" />
     <ClCompile Include="Codigo\Tijolinho.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
@@ -161,6 +162,7 @@
     <ClInclude Include="Codigo\Mapa.h" />
     <ClInclude Include="Codigo\Pacman.h" />
     <ClInclude Include="Codigo\Pirula.h" />
+    <ClInclude Include="Codigo\Placar.h" />
     <ClInclude Include="Codigo\StructMatriz.h" />
     <ClInclude Include="Codigo\Tijolinho.h" />
   </ItemGroup>

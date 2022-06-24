@@ -12,6 +12,8 @@
 #include "Codigo/Mapa.h"
 #include "Codigo/Matriz.h"
 #include "Codigo/Display.h"
+#include "Codigo/Pacman.h"
+#include "Codigo/Placar.h"
 
 #include <math.h>
 
@@ -27,6 +29,10 @@ int main() {
     Matriz CMatriz;
 
     Mapa mapa;
+
+    Pacman player;
+
+    Placar atualPlacar;
 
     Display Tela;
 
@@ -85,7 +91,9 @@ int main() {
         al_destroy_timer(timer);
         return -1;
     }
-    al_draw_bitmap_region(darth, 0, 0, darthL, darthA, darth_x, darth_y, 0);
+
+    player.desenhaPacman();
+    //al_draw_bitmap_region(darth, 0, 0, darthL, darthA, darth_x, darth_y, 0);
 
     //Eventos
     event_queue = al_create_event_queue();
@@ -164,284 +172,11 @@ int main() {
 
     while (!termina)
     {
-       
-        //Coverte de pixel para a posição relativa na matriz
-        /*colisaoYR = ((darth_y - 40) / 10);
-        colisaoXR = ((darth_x - 120) / 10);
-        colisaoYL = ((darth_y - 40) / 10);
-        colisaoXL = ((darth_x - 150) / 10);
-        colisaoYT = ((darth_y - 50) / 10);
-        colisaoXT = ((darth_x - 140) / 10);
-        colisaoYB = ((darth_y - 20) / 10);
-        colisaoXB = ((darth_x - 140) / 10);*/
 
-        colisaoYPirula = ((darth_y - 40) / 10);
-        colisaoXPirula = ((darth_x - 140) / 10);
+        player.posicaoPacman();
+        player.colisaoPacmanPirula(ptrmatriz);
 
-        colisaoYC = ceil(((darth_y - 40) / 10));
-        colisaoXC = ((darth_x - 140) / 10);
-        colisaoYCN = ceil(((darth_y - 40) / 10));
-        colisaoXCN = ceil(((darth_x - 140) / 10));
-
-        colisaoYE = ceil(((darth_y - 40) / 10));
-        colisaoXE = ceil(((darth_x - 140) / 10));
-        colisaoYEN = ((darth_y - 40) / 10);
-        colisaoXEN = ceil(((darth_x - 140) / 10));
-
-        colisaoYD = ceil(((darth_y - 40) / 10));
-        colisaoXD = ((darth_x - 140) / 10);
-        colisaoYDN = ((darth_y - 40) / 10);
-        colisaoXDN = ((darth_x - 140) / 10);
-
-        colisaoYB = (((darth_y - 40) / 10));
-        colisaoXB = ceil(((darth_x - 140) / 10));
-        colisaoYBN = (((darth_y - 40) / 10));
-        colisaoXBN = (((darth_x - 140) / 10));
-
-        //Verifica as colisoes do Pacman
-
-        /*
-        if (ptrmatriz->dados_matriz[colisaoYR][colisaoXR] == 1)
-        {
-            colisaoR = true;
-            colisaoL = false;
-            colisaoT = false;
-            colisaoB = false;
-        }
-        else if (ptrmatriz->dados_matriz[colisaoYL][colisaoXL] == 1)
-        {
-            colisaoL = true;
-            colisaoR = false;
-            colisaoT = false;
-            colisaoB = false;
-        }
-        else if (ptrmatriz->dados_matriz[colisaoYT][colisaoXT] == 1)
-        {
-            colisaoT = true;
-            colisaoR = false;
-            colisaoL = false;
-            colisaoB = false;
-        }
-        else if (ptrmatriz->dados_matriz[colisaoYB][colisaoXB] == 1)
-        {
-            colisaoB = true;
-            colisaoR = false;
-            colisaoL = false;
-            colisaoT = false;
-        }
-        else
-        {
-            colisaoR = false;
-            colisaoL = false;
-            colisaoT = false;
-            colisaoB = false;
-        }
-        */
-
-        //cout << "Dados da matriz: y" << colisaoYPirula<< "x" << colisaoXPirula << endl;
-        if (ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula] == 2)
-        {
-            ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula] = 16;
-            placar++;
-            cout << placar << endl;
-            //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula] << endl;
-        }
-        if (ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula + 1] == 2)
-        {
-            ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula + 1] = 16;
-            placar++;
-            cout << placar << endl;
-            //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula+1][colisaoXPirula+1] << endl;
-        }
-        if (ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula + 1] == 2)
-        {
-            ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula + 1] = 16;
-            placar++;
-            cout << placar << endl;
-            //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula+1] << endl;
-        }
-        if (ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula] == 2)
-        {
-            ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula] = 16;
-            placar++;
-            cout << placar << endl;
-            //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula] << endl;
-            
-        }
-        if (ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula - 1] == 2)
-        {
-            ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula - 1] = 16;
-            placar++;
-            cout << placar << endl;
-            //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula-1] << endl;
-        }
-        if (ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula] == 2)
-        {
-            ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula] = 16;
-            placar++;
-            cout << placar << endl;
-            //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula-1][colisaoXPirula] << endl;
-        }
-        if (ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula - 1] == 2)
-        {
-            ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula - 1] = 16;
-            placar++;
-            cout << placar << endl;
-            //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula-1] << endl;
-        }
-        if (ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula - 1] == 2)
-        {
-            ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula - 1] = 16;
-            placar++;
-            cout << placar << endl;
-            //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula - 1] << endl;
-        }
-        if (ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula + 1] == 2)
-        {
-            ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula + 1] = 16;
-            placar++;
-            cout << placar << endl;
-            //cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula + 1] << endl;
-        }
-
-        //Espaço ta livre
-
-        if (ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula] != 1)
-        {
-            if (ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula + 1] != 1)
-            {
-                if (ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula + 1] != 1)
-                {
-                    if (ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula] != 1)
-                    {
-                        if (ptrmatriz->dados_matriz[colisaoYPirula][colisaoXPirula - 1] != 1)
-                        {
-                            if (ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula] != 1)
-                            {
-                                if (ptrmatriz->dados_matriz[colisaoYPirula + 1][colisaoXPirula - 1] != 1)
-                                {
-                                    if (ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula - 1] != 1)
-                                    {
-                                        if (ptrmatriz->dados_matriz[colisaoYPirula - 1][colisaoXPirula + 1] != 1)
-                                        {
-                                            //Right
-                                            if (ptrmatriz->dados_matriz[colisaoYD][colisaoXD + 2] != 1 && ptrmatriz->dados_matriz[colisaoYDN][colisaoXDN + 2] != 1)
-                                            {
-                                                if (ptrmatriz->dados_matriz[colisaoYD-1][colisaoXD + 2] != 1 && ptrmatriz->dados_matriz[colisaoYDN - 1][colisaoXDN + 2] != 1)
-                                                {
-                                                    if (ptrmatriz->dados_matriz[colisaoYD + 1][colisaoXD + 2] != 1 && ptrmatriz->dados_matriz[colisaoYDN + 1][colisaoXDN + 2] != 1)
-                                                    {
-                                                        espacoLivreR = true;
-                                                    }
-                                                    else
-                                                    {
-                                                        espacoLivreR = false;
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    espacoLivreR = false;
-                                                }
-                                            }
-                                            else
-                                            {
-                                                espacoLivreR = false;
-                                            }
-                                            //Left
-                                            if (ptrmatriz->dados_matriz[colisaoYE][colisaoXE - 2] != 1 && ptrmatriz->dados_matriz[colisaoYEN][colisaoXEN - 2] != 1)
-                                            {
-                                                if (ptrmatriz->dados_matriz[colisaoYE - 1][colisaoXE - 2] != 1 && ptrmatriz->dados_matriz[colisaoYEN - 1][colisaoXEN - 2] != 1)
-                                                {
-                                                    if (ptrmatriz->dados_matriz[colisaoYE + 1][colisaoXE - 2] != 1 && ptrmatriz->dados_matriz[colisaoYEN + 1][colisaoXEN - 2] != 1)
-                                                    {
-                                                        espacoLivreL = true;
-                                                    }
-                                                    else
-                                                    {
-                                                        espacoLivreL = false;
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    espacoLivreL = false;
-                                                }
-                                            }
-                                            else
-                                            {
-                                                espacoLivreL = false;
-                                            }
-                                            //Top
-                                            if (ptrmatriz->dados_matriz[colisaoYC - 2][colisaoXC - 1] != 1 && ptrmatriz->dados_matriz[colisaoYCN - 2][colisaoXCN - 1] != 1)
-                                            {
-                                                if (ptrmatriz->dados_matriz[colisaoYC - 2][colisaoXC] != 1 && ptrmatriz->dados_matriz[colisaoYCN - 2][colisaoXCN] != 1)
-                                                {
-                                                    if (ptrmatriz->dados_matriz[colisaoYC - 2][colisaoXC + 1] != 1 && ptrmatriz->dados_matriz[colisaoYCN - 2][colisaoXCN + 1] != 1)
-                                                    {
-                                                        espacoLivreT = true;
-                                                    }
-                                                    else
-                                                    {
-                                                        espacoLivreT = false;
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    espacoLivreT = false;
-                                                }
-                                            }
-                                            else
-                                            {
-                                                espacoLivreT = false;
-                                            }
-                                            //Button
-                                            if (ptrmatriz->dados_matriz[colisaoYB + 2][colisaoXB - 1] != 1 && ptrmatriz->dados_matriz[colisaoYBN + 2][colisaoXBN - 1] != 1)
-                                            {
-                                                if (ptrmatriz->dados_matriz[colisaoYB + 2][colisaoXB] != 1 && ptrmatriz->dados_matriz[colisaoYBN + 2][colisaoXBN] != 1)
-                                                {
-                                                    if (ptrmatriz->dados_matriz[colisaoYB + 2][colisaoXB + 1] != 1 && ptrmatriz->dados_matriz[colisaoYBN + 2][colisaoXBN + 1] != 1)
-                                                    {
-                                                        espacoLivreB = true;
-                                                    }
-                                                    else
-                                                    {
-                                                        espacoLivreB = false;
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    espacoLivreB = false;
-                                                }
-                                            }
-                                            else
-                                            {
-                                                espacoLivreB = false;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        /*cout << "Colisao Direita: " << colisaoR << endl;
-        cout <<"X: "<< colisaoXR << endl;
-        cout <<"Y: "<< colisaoYR << endl;
-        cout <<"Dados da matriz: "<< ptrmatriz->dados_matriz[colisaoYR][colisaoXR] << endl;
-        cout << "Colisao Esquerda: " << colisaoL << endl;
-        cout << "X: " << colisaoXL << endl;
-        cout << "Y: " << colisaoYL << endl;
-        cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYL][colisaoXL] << endl;
-        cout << "Colisao Cima: " << colisaoT << endl;
-        cout << "X: " << colisaoXT << endl;
-        cout << "Y: " << colisaoYT << endl;
-        cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYT][colisaoXT] << endl;
-        cout << "Colisao Baixo: " << colisaoB << endl;
-        cout << "X: " << colisaoXB << endl;
-        cout << "Y: " << colisaoYB << endl;
-        cout << "Dados da matriz: " << ptrmatriz->dados_matriz[colisaoYB][colisaoXB] << endl;*/
+        atualPlacar.set_placar(player.getAtualPlacar());
         
         ALLEGRO_EVENT ev;
         al_wait_for_event(event_queue, &ev);
@@ -480,7 +215,7 @@ int main() {
             //Verifica se o camando pode ser executado e define as variaveis para que isso aconteça
 
             //Top
-            if (proximaIntrucao == ALLEGRO_KEY_UP && espacoLivreT == true)
+            if (proximaIntrucao == ALLEGRO_KEY_UP && player.colisaoPacmanTop(ptrmatriz) == true)
             {
                 top = true;
                 bottom = false;
@@ -489,7 +224,7 @@ int main() {
                 lado = 3;
             }
             //Bottom
-            if (proximaIntrucao == ALLEGRO_KEY_DOWN && espacoLivreB == true)
+            if (proximaIntrucao == ALLEGRO_KEY_DOWN && player.colisaoPacmanBottom(ptrmatriz) == true)
             {
                 bottom = true;
                 top = false;
@@ -497,7 +232,7 @@ int main() {
                 right = false;
                 lado = 1;
             }
-            if (proximaIntrucao == ALLEGRO_KEY_LEFT && espacoLivreL == true)
+            if (proximaIntrucao == ALLEGRO_KEY_LEFT && player.colisaoPacmanLeft(ptrmatriz) == true)
             {
                 left = true;
                 top = false;
@@ -505,7 +240,7 @@ int main() {
                 right = false;
                 lado = 2;
             }
-            if (proximaIntrucao == ALLEGRO_KEY_RIGHT && espacoLivreR == true)
+            if (proximaIntrucao == ALLEGRO_KEY_RIGHT && player.colisaoPacmanRight(ptrmatriz) == true)
             {
                 right = true;
                 top = false;
@@ -516,21 +251,24 @@ int main() {
 
             //Executa a movimentação
 
-            if (top == true && colisaoT == false && espacoLivreT == true) { //Movimetação para Cima
-                darth_y -= 2.0;
+            if (top == true && player.colisaoPacmanTop(ptrmatriz) == true) { //Movimetação para Cima
+                player.setPacmanY(player.getPacmanY() - 2.0);
+                //darth_y -= 2.0;
             }
 
-            if (bottom == true && colisaoB == false && espacoLivreB == true) { //Movimentação para Baixo
-                darth_y += 2.0;
+            if (bottom == true && player.colisaoPacmanBottom(ptrmatriz) == true) { //Movimentação para Baixo
+                player.setPacmanY(player.getPacmanY() + 2.0);
+                //darth_y += 2.0;
             }
 
-            if (left == true && colisaoL == false && espacoLivreL == true) { //Movimentação para Esquerda
-                darth_x -= 2.0;
+            if (left == true && player.colisaoPacmanLeft(ptrmatriz) == true) { //Movimentação para Esquerda
+                player.setPacmanX(player.getPacmanX() - 2.0);
+                //darth_x -= 2.0;
             }
 
-            if (right == true && colisaoR == false && espacoLivreR == true) { //Movimentação para Direita
-
-                darth_x += 2.0;
+            if (right == true && player.colisaoPacmanRight(ptrmatriz) == true) { //Movimentação para Direita
+                player.setPacmanX(player.getPacmanX() + 2.0);
+                //darth_x += 2.0;
             }
 
             re_desenha = true;
@@ -559,8 +297,15 @@ int main() {
             mapa.~Mapa(); //Destrutor dos elemtos do mapa
             mapa.setMapa(ptrmatriz); //Contrutor dos elemtos do mapa
 
+            atualPlacar.desenhaPlacar();
+
             //Desenha o pacman
-            al_draw_bitmap_region(darth, /*lado**/0 * darthL, /*sprite**/0* darthA, darthL, darthA, darth_x, darth_y, 0);
+            player.~Pacman();
+            player.desenhaPacman();
+
+            //al_draw_bitmap_region(player.getPacman() , /*lado**/0, /*sprite**/0, 30, 30, player.getPacmanX(), player.getPacmanY(), 0);
+
+            //al_draw_bitmap_region(darth, /*lado**/0 * darthL, /*sprite**/0* darthA, darthL, darthA, darth_x, darth_y, 0);
 
             al_flip_display();
         }
