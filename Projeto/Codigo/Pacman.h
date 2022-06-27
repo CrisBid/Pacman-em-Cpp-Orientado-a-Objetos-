@@ -34,7 +34,7 @@ public:
     void setPacmanX(float);
     void setPacmanY(float);
 
-	void desenhaPacman();
+	void desenhaPacman(int, int);
 
 	~Pacman();
 

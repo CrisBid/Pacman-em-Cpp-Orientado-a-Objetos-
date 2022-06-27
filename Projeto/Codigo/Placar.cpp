@@ -43,7 +43,6 @@ void Placar::set_placar(int x) {
 		num_placarX = vetResults[i - 1];
 		num_placarXX = vetResults[i];
 	}
-	for (int j = i; j >= 0; j--)printf("%d \n", i);
 }
 
 int Placar::getPlacar() {

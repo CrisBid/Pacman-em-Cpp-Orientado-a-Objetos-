@@ -106,60 +106,50 @@ bool Pacman::colisaoPacman(sMatriz *matriz) {
                                 {
                                     if (matriz->dados_matriz[colisaoYPlayer - 1][colisaoXPlayer + 1] != 1)
                                     {
-                                        cout << "matriz True";
                                         return true;
                                     }
                                     else
                                     {
-                                        cout << "matriz False";
                                         return false; 
                                     }
                                 }
                                 else
                                 {
                                     return false;
-                                    cout << "matriz False";
                                 }
                             }
                             else
                             {
                                 return false;
-                                cout << "matriz False";
                             }
                         }
                         else
                         {
                             return false;
-                            cout << "matriz False";
                         }
                     }
                     else
                     {
                         return false;
-                        cout << "matriz False";
                     }
                 }
                 else
                 {
-                    //cout << "matriz False";
                     return false; 
                 }
             }
             else
             {
-                //cout << "matriz False";
                 return false;
             }
         }
         else
         {
-            //cout << "matriz False";
             return false;
         } 
     }
     else
     {
-        cout << "matriz False";
         return false;
     }
 }
@@ -327,10 +317,10 @@ void Pacman::setPacmanY(float y) {
     pacman_y = y;
 }
 
-void Pacman::desenhaPacman() {
-    pacman = al_load_bitmap("Images/Poro/Poro 1.png");
+void Pacman::desenhaPacman(int lado, int sprite) {
+    pacman = al_load_bitmap("Images/Poro/PacmanSprite.png");
 
-    al_draw_bitmap_region(pacman, /*lado**/0, /*sprite**/0, pacman_largura, pacman_altura, pacman_x, pacman_y, 0);
+    al_draw_bitmap_region(pacman, lado * pacman_largura, sprite * pacman_altura, pacman_largura, pacman_altura, pacman_x, pacman_y, 0);
 }
 
 ALLEGRO_BITMAP* Pacman::getPacman() {

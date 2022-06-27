@@ -20,8 +20,8 @@
 using namespace std;
 
 const float FPS = 30;
-const int SCREEN_W = 964;//Tab Interno 630 = 21*30
-const int SCREEN_H = 750;//Tab Interno x   = x*30
+const int SCREEN_W = 900;//Tab Interno 630 = 21*30
+const int SCREEN_H = 720;//Tab Interno x   = x*30
 
 
 int main() {
@@ -78,7 +78,7 @@ int main() {
 
     Tela.setDisplay(SCREEN_W, SCREEN_H); // 21- 31
 
-    image = al_load_bitmap("Images/mapa.png");
+    image = al_load_bitmap("Images/Mapa/Mapa_Fundo.png");
 
     mapa.setMapa(ptrmatriz);
 
@@ -92,7 +92,7 @@ int main() {
         return -1;
     }
 
-    player.desenhaPacman();
+    player.desenhaPacman(0,0);
     //al_draw_bitmap_region(darth, 0, 0, darthL, darthA, darth_x, darth_y, 0);
 
     //Eventos
@@ -190,7 +190,7 @@ int main() {
                 al_set_timer_count(timer, 0);
                 sprite = sprite + fator;    
                 if (sprite == 0) fator = 1;
-                if (sprite == 2) fator = -1;
+                if (sprite == 5) fator = -1;
             }
 
             //Recebe o comando e guarda ele na variavel ate q ele seja possivel de ser executado
@@ -221,7 +221,7 @@ int main() {
                 bottom = false;
                 left = false;
                 right = false;
-                lado = 3;
+                lado = 2;
             }
             //Bottom
             if (proximaIntrucao == ALLEGRO_KEY_DOWN && player.colisaoPacmanBottom(ptrmatriz) == true)
@@ -230,7 +230,7 @@ int main() {
                 top = false;
                 left = false;
                 right = false;
-                lado = 1;
+                lado = 3;
             }
             if (proximaIntrucao == ALLEGRO_KEY_LEFT && player.colisaoPacmanLeft(ptrmatriz) == true)
             {
@@ -238,7 +238,7 @@ int main() {
                 top = false;
                 bottom = false;
                 right = false;
-                lado = 2;
+                lado = 1;
             }
             if (proximaIntrucao == ALLEGRO_KEY_RIGHT && player.colisaoPacmanRight(ptrmatriz) == true)
             {
@@ -290,7 +290,7 @@ int main() {
         if (re_desenha && al_is_event_queue_empty(event_queue)) { //Redesenha se a fila de eventos esta vazia
             re_desenha = false;
             //Limpa a tela e Redesenha
-            al_clear_to_color(al_map_rgb(255, 255, 255));
+            al_clear_to_color(al_map_rgb(000, 000, 255));
             al_draw_bitmap(image, 0, 0, 0); //Desenha a imagem de fundo
 
             //Chamada dos elemtos do mapa
@@ -298,10 +298,11 @@ int main() {
             mapa.setMapa(ptrmatriz); //Contrutor dos elemtos do mapa
 
             atualPlacar.desenhaPlacar();
+            atualPlacar.~Placar();
 
             //Desenha o pacman
             player.~Pacman();
-            player.desenhaPacman();
+            player.desenhaPacman(lado, sprite);
 
             //al_draw_bitmap_region(player.getPacman() , /*lado**/0, /*sprite**/0, 30, 30, player.getPacmanX(), player.getPacmanY(), 0);
 

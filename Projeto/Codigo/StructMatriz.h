@@ -8,7 +8,7 @@ using namespace std;
 
 	struct sMatriz
 	{
-		int dados_matriz[67][65];
+		int dados_matriz[62][56];
 		int matriz_largura;
 		int matriz_altura;
 	};

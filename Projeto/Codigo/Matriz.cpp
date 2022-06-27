@@ -11,8 +11,8 @@
 Matriz::Matriz()
 {
 	//Inicialização Altura/Largura da matriz
-	ptrmatriz.matriz_altura = 64;
-	ptrmatriz.matriz_largura = 66;
+	ptrmatriz.matriz_altura = 61;
+	ptrmatriz.matriz_largura = 55;
 
 	//Inicialização da matriz
 	for (int i = 0; i < ptrmatriz.matriz_altura; i++)
