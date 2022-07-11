@@ -34,9 +34,6 @@
     <Filter Include="Arquivos de Origem\Bibliotecas\Mapa\Obejtos do Mapa">
       <UniqueIdentifier>{3547bb69-7603-424e-b57e-c15fbd96257a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Arquivos de Origem\Bibliotecas\Pacman">
-      <UniqueIdentifier>{fd6f3a0f-2e02-4878-ac7c-b797d3571884}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Arquivos de Cabeçalho\Mapa">
       <UniqueIdentifier>{dcc1b04f-a16e-452e-92c2-cd87647a38e5}</UniqueIdentifier>
     </Filter>
@@ -46,14 +43,35 @@
     <Filter Include="Arquivos de Cabeçalho\Mapa\Objetos do Mapa">
       <UniqueIdentifier>{b166cda1-22a9-4252-86c0-6aabfd5d3149}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Arquivos de Cabeçalho\Pacman">
-      <UniqueIdentifier>{56dfdd3d-4761-4382-87a1-6e1da8ac92ff}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Arquivos de Origem\Bibliotecas\Placar">
       <UniqueIdentifier>{1409db2a-8c91-45d0-836c-97715e78fa1e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Arquivos de Cabeçalho\Placar">
       <UniqueIdentifier>{e39a5eae-c146-4687-8cc9-4a8ce5c85db6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\Bibliotecas\Entidades">
+      <UniqueIdentifier>{fcf34808-917b-4883-8822-d2f1972b4730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\Bibliotecas\Entidades\Pacman">
+      <UniqueIdentifier>{fd6f3a0f-2e02-4878-ac7c-b797d3571884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\Bibliotecas\Entidades\Inimigos">
+      <UniqueIdentifier>{fe1d0aff-1ffb-48f2-84e1-38eff9dd8f5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\Bibliotecas\Entidades\Base">
+      <UniqueIdentifier>{6c3fc9bf-faea-4981-ab57-2eddcbea1d68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Entidades">
+      <UniqueIdentifier>{aa98f1a0-3e81-4b75-b5b7-8769a0337011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Entidades\Base">
+      <UniqueIdentifier>{d499a87f-5131-4704-ba19-4acf4a624999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Entidades\Inimigos">
+      <UniqueIdentifier>{01ae6311-bfec-482d-a371-937f37e69478}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Entidades\Pacman">
+      <UniqueIdentifier>{56dfdd3d-4761-4382-87a1-6e1da8ac92ff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -80,10 +98,16 @@
       <Filter>Arquivos de Origem\Bibliotecas</Filter>
     </ClCompile>
     <ClCompile Include="Codigo\Pacman.cpp">
-      <Filter>Arquivos de Origem\Bibliotecas\Pacman</Filter>
+      <Filter>Arquivos de Origem\Bibliotecas\Entidades\Pacman</Filter>
     </ClCompile>
     <ClCompile Include="Codigo\Placar.cpp">
       <Filter>Arquivos de Origem\Bibliotecas\Placar</Filter>
+    </ClCompile>
+    <ClCompile Include="Codigo\Movimentacao.cpp">
+      <Filter>Arquivos de Origem\Bibliotecas\Entidades\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Codigo\Inimigos.cpp">
+      <Filter>Arquivos de Origem\Bibliotecas\Entidades\Inimigos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,10 +130,16 @@
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Codigo\Pacman.h">
-      <Filter>Arquivos de Cabeçalho\Pacman</Filter>
+      <Filter>Arquivos de Cabeçalho\Entidades\Pacman</Filter>
     </ClInclude>
     <ClInclude Include="Codigo\Placar.h">
       <Filter>Arquivos de Cabeçalho\Placar</Filter>
+    </ClInclude>
+    <ClInclude Include="Codigo\Movimentacao.h">
+      <Filter>Arquivos de Cabeçalho\Entidades\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Codigo\Inimigos.h">
+      <Filter>Arquivos de Cabeçalho\Entidades\Inimigos</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
