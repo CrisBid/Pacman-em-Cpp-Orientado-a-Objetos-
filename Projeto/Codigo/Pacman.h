@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "StructMatriz.h"
+#include "Movimentacao.h"
 
 #include <allegro5/allegro5.h>
 
@@ -9,10 +10,11 @@
 
 using namespace std;
 
-class Pacman
+class Pacman : public Movimentacao
 {
 public:
 	Pacman();
+	Pacman(int,int);
 
 	ALLEGRO_BITMAP* getPacman();
 
@@ -34,48 +36,28 @@ public:
     void setPacmanX(float);
     void setPacmanY(float);
 
-	void desenhaPacman(int, int);
+	void movimentacaoPacman(int, sMatriz*);
+	void execusaoMovPacman(sMatriz*);
+
+	void desenhaPacman(int);
 
 	~Pacman();
 
 private:
 	ALLEGRO_BITMAP* pacman;
 
-    float pacman_x;
-    float pacman_y;
-
-    int pacman_altura;
-    int pacman_largura;
-
     int placar;
 
-    //Posição do player
-    int colisaoYPlayer;
-    int colisaoXPlayer;
+	//Variaveis de Tamanho da Sprite
+	int pacman_altura;
+	int pacman_largura;
 
-    //Colisão Cima
-    int colisaoYC;
-    int colisaoXC;
-    int colisaoYCN;
-    int colisaoXCN;
-
-    //Colisão Esquerda
-    int colisaoYE;
-    int colisaoXE;
-    int colisaoYEN;
-    int colisaoXEN;
-
-    //Colisão Direita
-    int colisaoYD;
-    int colisaoXD;
-    int colisaoYDN;
-    int colisaoXDN;
-
-    //Colisão Baixo
-    int colisaoXB;
-    int colisaoYB;
-    int colisaoXBN;
-    int colisaoYBN;
+	//Variaveis de Direção
+	bool top;
+	bool right;
+	bool bottom;
+	bool left;
+	int lado;
 
 };
 #endif

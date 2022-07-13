@@ -8,11 +8,12 @@
 #include "allegro5/allegro_acodec.h"
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
-//#include "Codigo/Tijolinho.h"
+
 #include "Codigo/Mapa.h"
 #include "Codigo/Matriz.h"
 #include "Codigo/Display.h"
 #include "Codigo/Pacman.h"
+#include "Codigo/Inimigos.h"
 #include "Codigo/Placar.h"
 
 #include <math.h>
@@ -30,7 +31,11 @@ int main() {
 
     Mapa mapa;
 
-    Pacman player;
+    Pacman player(160,60);
+
+    //Inimigos fantasmas(360,300), fantasmas2(360, 340), fantasmas3(460, 300), fantasmas4(460, 340);
+
+    Inimigos fantasmas(410,300), fantasmas2(160, 620), fantasmas3(660, 620), fantasmas4(660, 60);
 
     Placar atualPlacar;
 
@@ -54,10 +59,9 @@ int main() {
 
     ALLEGRO_EVENT_QUEUE* event_queue = NULL; //Fila de Eventos
     ALLEGRO_TIMER* timer = NULL;//Timer
-    ALLEGRO_BITMAP* image;
-
-    float darth_x = 160;
-    float darth_y = 60;
+    ALLEGRO_BITMAP* image = NULL;
+    //ALLEGRO_SAMPLE* sample = NULL;
+    //ALLEGRO_SAMPLE_INSTANCE* instance = NULL;
 
     //Vetor de Teclas
     bool teclas[255] = { false };
@@ -67,7 +71,11 @@ int main() {
         return -1;
     }
     al_init_image_addon();//Função de Imagem
-    al_install_keyboard();//Funcoes Teclado
+    al_install_keyboard();//Funcoes de Teclado
+    al_init_image_addon();//Imagens
+    //al_install_audio(); //Funçoes de audio
+    //al_init_acodec_addon();//Funçoes de audio
+    //al_reserve_samples(1);//Funçoes de audio
 
     timer = al_create_timer(1.0 / FPS);
     if (!timer) {
@@ -76,30 +84,18 @@ int main() {
     }
 
 
-    Tela.setDisplay(SCREEN_W, SCREEN_H); // 21- 31
+    Tela.setDisplay(SCREEN_W, SCREEN_H);
 
     image = al_load_bitmap("Images/Mapa/Mapa_Fundo.png");
 
     mapa.setMapa(ptrmatriz);
 
-    ALLEGRO_BITMAP* darth;
-    int darthL = 30, darthA = 30;//Largura e Altura
-    darth = al_load_bitmap("Images/Poro/Poro 1.png");//200x600
-    if (!darth) {
-        fprintf(stderr, "Falha ao Criar Personagem\n");
-        Tela.~Display();
-        al_destroy_timer(timer);
-        return -1;
-    }
-
-    player.desenhaPacman(0,0);
-    //al_draw_bitmap_region(darth, 0, 0, darthL, darthA, darth_x, darth_y, 0);
+    player.desenhaPacman(0);
 
     //Eventos
     event_queue = al_create_event_queue();
     if (!event_queue) {
         fprintf(stderr, "failed to create event_queue!\n");
-        al_destroy_bitmap(darth);
         Tela.~Display();
         al_destroy_timer(timer);
         return -1;
@@ -113,61 +109,24 @@ int main() {
 
     al_start_timer(timer);
 
+    /*
+    sample = al_load_sample("Audios/Enemy.wav");
+    instance = al_create_sample_instance(sample);
+
+    al_attach_sample_instance_to_mixer(instance, al_get_default_mixer());
+
+    if (!sample) {
+        printf("Audio clip sample not loaded!\n");
+        return -1;
+    }
+    */
     bool re_desenha = true;
     bool termina = false;
 
     int sprite = 0, fator = 1;
     int tempo, miliseg = 200;
 
-    int placar = 0;
     int proximaIntrucao = 0;
-    
-    bool colisaoR = false;
-    bool colisaoL = false;
-    bool colisaoT = false;
-    bool colisaoB = false;
-
-    bool espacoLivre = true;
-    bool espacoLivreR = true;
-    bool espacoLivreL = true;
-    bool espacoLivreT = true;
-    bool espacoLivreB = true;
-
-    int colisaoXR = 0;
-    int colisaoYR = 0;
-    int colisaoXL = 0;
-    int colisaoYL = 0;
-    int colisaoXT = 0;
-    int colisaoYT = 0;
-
-    int colisaoYPirula = 0;
-    int colisaoXPirula = 0;
-
-    int colisaoYC = 0;
-    int colisaoXC = 0;
-    int colisaoYCN = 0;
-    int colisaoXCN = 0;
-
-    int colisaoYE = 0;
-    int colisaoXE = 0;
-    int colisaoYEN = 0;
-    int colisaoXEN = 0;
-
-    int colisaoYD = 0;
-    int colisaoXD = 0;
-    int colisaoYDN = 0;
-    int colisaoXDN = 0;
-
-    int colisaoXB = 0;
-    int colisaoYB = 0;
-    int colisaoXBN = 0;
-    int colisaoYBN = 0;
-
-    bool top = false;
-    bool right = false;
-    bool bottom = false;
-    bool left = false;
-    int lado = 0;
 
 
     while (!termina)
@@ -175,6 +134,30 @@ int main() {
 
         player.posicaoPacman();
         player.colisaoPacmanPirula(ptrmatriz);
+
+        fantasmas.posicaoInimigos();
+        fantasmas.sorteioDirecao(ptrmatriz);
+
+        fantasmas.movimentacaoInimigos(ptrmatriz);
+        fantasmas.execusaoMovInimigos(ptrmatriz);
+
+        fantasmas2.posicaoInimigos();
+        fantasmas2.sorteioDirecao(ptrmatriz);
+
+        fantasmas2.movimentacaoInimigos(ptrmatriz);
+        fantasmas2.execusaoMovInimigos(ptrmatriz);
+
+        fantasmas3.posicaoInimigos();
+        fantasmas3.sorteioDirecao(ptrmatriz);
+
+        fantasmas3.movimentacaoInimigos(ptrmatriz);
+        fantasmas3.execusaoMovInimigos(ptrmatriz);
+
+        fantasmas4.posicaoInimigos();
+        fantasmas4.sorteioDirecao(ptrmatriz);
+
+        fantasmas4.movimentacaoInimigos(ptrmatriz);
+        fantasmas4.execusaoMovInimigos(ptrmatriz);
 
         atualPlacar.set_placar(player.getAtualPlacar());
         
@@ -185,8 +168,9 @@ int main() {
 
         if (ev.type == ALLEGRO_EVENT_TIMER) {
 
+
             //Timer para trocar o bitmap
-            if (tempo == (FPS * miliseg) / 1000) {
+            if (tempo == ((FPS * miliseg) / 1000) || tempo > ((FPS * miliseg) / 1000)) {
                 al_set_timer_count(timer, 0);
                 sprite = sprite + fator;    
                 if (sprite == 0) fator = 1;
@@ -210,66 +194,11 @@ int main() {
             if (teclas[ALLEGRO_KEY_RIGHT])
             {
                 proximaIntrucao = ALLEGRO_KEY_RIGHT;
+                
             }
 
-            //Verifica se o camando pode ser executado e define as variaveis para que isso aconteça
-
-            //Top
-            if (proximaIntrucao == ALLEGRO_KEY_UP && player.colisaoPacmanTop(ptrmatriz) == true)
-            {
-                top = true;
-                bottom = false;
-                left = false;
-                right = false;
-                lado = 2;
-            }
-            //Bottom
-            if (proximaIntrucao == ALLEGRO_KEY_DOWN && player.colisaoPacmanBottom(ptrmatriz) == true)
-            {
-                bottom = true;
-                top = false;
-                left = false;
-                right = false;
-                lado = 3;
-            }
-            if (proximaIntrucao == ALLEGRO_KEY_LEFT && player.colisaoPacmanLeft(ptrmatriz) == true)
-            {
-                left = true;
-                top = false;
-                bottom = false;
-                right = false;
-                lado = 1;
-            }
-            if (proximaIntrucao == ALLEGRO_KEY_RIGHT && player.colisaoPacmanRight(ptrmatriz) == true)
-            {
-                right = true;
-                top = false;
-                bottom = false;
-                left = false;
-                lado = 0;
-            }
-
-            //Executa a movimentação
-
-            if (top == true && player.colisaoPacmanTop(ptrmatriz) == true) { //Movimetação para Cima
-                player.setPacmanY(player.getPacmanY() - 2.0);
-                //darth_y -= 2.0;
-            }
-
-            if (bottom == true && player.colisaoPacmanBottom(ptrmatriz) == true) { //Movimentação para Baixo
-                player.setPacmanY(player.getPacmanY() + 2.0);
-                //darth_y += 2.0;
-            }
-
-            if (left == true && player.colisaoPacmanLeft(ptrmatriz) == true) { //Movimentação para Esquerda
-                player.setPacmanX(player.getPacmanX() - 2.0);
-                //darth_x -= 2.0;
-            }
-
-            if (right == true && player.colisaoPacmanRight(ptrmatriz) == true) { //Movimentação para Direita
-                player.setPacmanX(player.getPacmanX() + 2.0);
-                //darth_x += 2.0;
-            }
+            player.movimentacaoPacman(proximaIntrucao, ptrmatriz);
+            player.execusaoMovPacman(ptrmatriz);
 
             re_desenha = true;
         }
@@ -302,18 +231,52 @@ int main() {
 
             //Desenha o pacman
             player.~Pacman();
-            player.desenhaPacman(lado, sprite);
+            player.desenhaPacman(sprite);
 
-            //al_draw_bitmap_region(player.getPacman() , /*lado**/0, /*sprite**/0, 30, 30, player.getPacmanX(), player.getPacmanY(), 0);
+            //Desenha os inimigos
 
-            //al_draw_bitmap_region(darth, /*lado**/0 * darthL, /*sprite**/0* darthA, darthL, darthA, darth_x, darth_y, 0);
+            //Inimigo 1
+            fantasmas.~Inimigos();
+            fantasmas.desenhaInimigos(sprite, 0);
+
+            //Inimigo 2
+            fantasmas2.~Inimigos();
+            fantasmas2.desenhaInimigos(sprite, 1);
+
+            //Inimigo 3
+            fantasmas3.~Inimigos();
+            fantasmas3.desenhaInimigos(sprite, 2);
+
+            //Inimigo 4
+            fantasmas4.~Inimigos();
+            fantasmas4.desenhaInimigos(sprite, 3);
+            
 
             al_flip_display();
+        }
+        if (player.getPacmanX() == fantasmas.getInimigosX() && player.getPacmanY() == fantasmas.getInimigosY())
+        {
+            termina = true;
+            cout << "VC PERDEU" << endl;
+        }
+        if (player.getPacmanX() == fantasmas2.getInimigosX() && player.getPacmanY() == fantasmas2.getInimigosY())
+        {
+            termina = true;
+            cout << "VC PERDEU" << endl;
+        }
+        if (player.getPacmanX() == fantasmas3.getInimigosX() && player.getPacmanY() == fantasmas3.getInimigosY())
+        {
+            termina = true;
+            cout << "VC PERDEU" << endl;
+        }
+        if (player.getPacmanX() == fantasmas4.getInimigosX() && player.getPacmanY() == fantasmas4.getInimigosY())
+        {
+            termina = true;
+            cout << "VC PERDEU" << endl;
         }
     }
 
     free(ptrmatriz); //Desaloca o ponteiro que aponta para a matriz
-    al_destroy_bitmap(darth); //Destroi o Pacaman
     al_destroy_timer(timer); //Destroi o Timer
     al_destroy_bitmap(image); //Destroi a Imagem
     al_destroy_event_queue(event_queue); //Destroi a Fila de Eventos

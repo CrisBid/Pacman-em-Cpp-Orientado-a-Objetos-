@@ -11,193 +11,93 @@ using namespace std;
 
 Pacman::Pacman()
 {
-
     pacman = NULL;
-
-    pacman_x = 160;
-    pacman_y = 60;
-
-    pacman_altura = 30;
-    pacman_largura = 30;
 
     placar = 0;
 
-    //Posição do player
-    colisaoYPlayer = 0;
-    colisaoXPlayer = 0;
+    //Altura e Largura da Sprite
+    pacman_altura = 30;
+    pacman_largura = 30;
 
-    //Colisão Cima
-    colisaoYC = 0;
-    colisaoXC = 0;
-    colisaoYCN = 0;
-    colisaoXCN = 0;
+    //Variaveis de Direção
+    top = false;
+    right = false;
+    bottom = false;
+    left = false;
+    lado = 0;
 
-    //Colisão Esquerda
-    colisaoYE = 0;
-    colisaoXE = 0;
-    colisaoYEN = 0;
-    colisaoXEN = 0;
+}
 
-    //Colisão Direita
-    colisaoYD = 0;
-    colisaoXD = 0;
-    colisaoYDN = 0;
-    colisaoXDN = 0;
+Pacman::Pacman(int x, int y):Movimentacao(x, y)
+{
+    pacman = NULL;
 
-    //Colisão Baixo
-    colisaoXB = 0;
-    colisaoYB = 0;
-    colisaoXBN = 0;
-    colisaoYBN = 0;
+    placar = 0;
+
+    //Altura e Largura da Sprite
+    pacman_altura = 30;
+    pacman_largura = 30;
+
+    //Variaveis de Direção
+    top = false;
+    right = false;
+    bottom = false;
+    left = false;
+    lado = 0;
 
 }
 
 void Pacman::posicaoPacman() {
-
-    //Posi��o Player
-    colisaoYPlayer = ((pacman_y - 40) / 10);
-    colisaoXPlayer = ((pacman_x - 140) / 10);
-
-    //Colis�o Cima
-    colisaoYC = ceil(((pacman_y - 40) / 10));
-    colisaoXC = ((pacman_x - 140) / 10);
-    colisaoYCN = ceil(((pacman_y - 40) / 10));
-    colisaoXCN = ceil(((pacman_x - 140) / 10));
-
-    //Colis�o Esquerda
-    colisaoYE = ceil(((pacman_y - 40) / 10));
-    colisaoXE = ceil(((pacman_x - 140) / 10));
-    colisaoYEN = ((pacman_y - 40) / 10);
-    colisaoXEN = ceil(((pacman_x - 140) / 10));
-
-    //Colis�o Direita
-    colisaoYD = ceil(((pacman_y - 40) / 10));
-    colisaoXD = ((pacman_x - 140) / 10);
-    colisaoYDN = ((pacman_y - 40) / 10);
-    colisaoXDN = ((pacman_x - 140) / 10);
-
-    //Colis�o Baixo
-    colisaoYB = (((pacman_y - 40) / 10));
-    colisaoXB = ceil(((pacman_x - 140) / 10));
-    colisaoYBN = (((pacman_y - 40) / 10));
-    colisaoXBN = (((pacman_x - 140) / 10));
-
+    Movimentacao::posicaoPlayer();
 }
 
 bool Pacman::colisaoPacman(sMatriz *matriz) {
-    if (matriz->dados_matriz[colisaoYPlayer][colisaoXPlayer] != 1)
-    {
-
-        cout << colisaoYPlayer << " ";
-        cout << colisaoXPlayer << endl;
-        if (matriz->dados_matriz[colisaoYPlayer + 1][colisaoXPlayer + 1] != 1)
-        {
-            if (matriz->dados_matriz[colisaoYPlayer][colisaoXPlayer + 1] != 1)
-            {
-                if (matriz->dados_matriz[colisaoYPlayer + 1][colisaoXPlayer] != 1)
-                {
-                    if (matriz->dados_matriz[colisaoYPlayer][colisaoXPlayer - 1] != 1)
-                    {
-                        if (matriz->dados_matriz[colisaoYPlayer - 1][colisaoXPlayer] != 1)
-                        {
-                            if (matriz->dados_matriz[colisaoYPlayer + 1][colisaoXPlayer - 1] != 1)
-                            {
-                                if (matriz->dados_matriz[colisaoYPlayer - 1][colisaoXPlayer - 1] != 1)
-                                {
-                                    if (matriz->dados_matriz[colisaoYPlayer - 1][colisaoXPlayer + 1] != 1)
-                                    {
-                                        return true;
-                                    }
-                                    else
-                                    {
-                                        return false; 
-                                    }
-                                }
-                                else
-                                {
-                                    return false;
-                                }
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    return false; 
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        } 
-    }
-    else
-    {
-        return false;
-    }
+    return Movimentacao::colisaoPlayer(matriz);
 }
 void Pacman::colisaoPacmanPirula(sMatriz* matriz) {
-    if (matriz->dados_matriz[colisaoYPlayer][colisaoXPlayer] == 2)
+    if (matriz->dados_matriz[Movimentacao::getColisaoPlayerY()][Movimentacao::getColisaoPlayerX()] == 2)
     {
-        matriz->dados_matriz[colisaoYPlayer][colisaoXPlayer] = 16;
+        matriz->dados_matriz[Movimentacao::getColisaoPlayerY()][Movimentacao::getColisaoPlayerX()] = 16;
         placar++;
     }
-    if (matriz->dados_matriz[colisaoYPlayer + 1][colisaoXPlayer + 1] == 2)
+    if (matriz->dados_matriz[Movimentacao::getColisaoPlayerY() + 1][Movimentacao::getColisaoPlayerX() + 1] == 2)
     {
-        matriz->dados_matriz[colisaoYPlayer + 1][colisaoXPlayer + 1] = 16;
+        matriz->dados_matriz[Movimentacao::getColisaoPlayerY() + 1][Movimentacao::getColisaoPlayerX() + 1] = 16;
         placar++;
     }
-    if (matriz->dados_matriz[colisaoYPlayer][colisaoXPlayer + 1] == 2)
+    if (matriz->dados_matriz[Movimentacao::getColisaoPlayerY()][Movimentacao::getColisaoPlayerX() + 1] == 2)
     {
-        matriz->dados_matriz[colisaoYPlayer][colisaoXPlayer + 1] = 16;
+        matriz->dados_matriz[Movimentacao::getColisaoPlayerY()][Movimentacao::getColisaoPlayerX() + 1] = 16;
         placar++;
     }
-    if (matriz->dados_matriz[colisaoYPlayer + 1][colisaoXPlayer] == 2)
+    if (matriz->dados_matriz[Movimentacao::getColisaoPlayerY() + 1][Movimentacao::getColisaoPlayerX()] == 2)
     {
-        matriz->dados_matriz[colisaoYPlayer + 1][colisaoXPlayer] = 16;
-        placar++;
-
-    }
-    if (matriz->dados_matriz[colisaoYPlayer][colisaoXPlayer - 1] == 2)
-    {
-        matriz->dados_matriz[colisaoYPlayer][colisaoXPlayer - 1] = 16;
+        matriz->dados_matriz[Movimentacao::getColisaoPlayerY() + 1][Movimentacao::getColisaoPlayerX()] = 16;
         placar++;
     }
-    if (matriz->dados_matriz[colisaoYPlayer - 1][colisaoXPlayer] == 2)
+    if (matriz->dados_matriz[Movimentacao::getColisaoPlayerY()][Movimentacao::getColisaoPlayerX() - 1] == 2)
     {
-        matriz->dados_matriz[colisaoYPlayer - 1][colisaoXPlayer] = 16;
+        matriz->dados_matriz[Movimentacao::getColisaoPlayerY()][Movimentacao::getColisaoPlayerX() - 1] = 16;
         placar++;
     }
-    if (matriz->dados_matriz[colisaoYPlayer + 1][colisaoXPlayer - 1] == 2)
+    if (matriz->dados_matriz[Movimentacao::getColisaoPlayerY() - 1][Movimentacao::getColisaoPlayerX()] == 2)
     {
-        matriz->dados_matriz[colisaoYPlayer + 1][colisaoXPlayer - 1] = 16;
+        matriz->dados_matriz[Movimentacao::getColisaoPlayerY() - 1][Movimentacao::getColisaoPlayerX()] = 16;
         placar++;
     }
-    if (matriz->dados_matriz[colisaoYPlayer - 1][colisaoXPlayer - 1] == 2)
+    if (matriz->dados_matriz[Movimentacao::getColisaoPlayerY() + 1][Movimentacao::getColisaoPlayerX() - 1] == 2)
     {
-        matriz->dados_matriz[colisaoYPlayer - 1][colisaoXPlayer - 1] = 16;
+        matriz->dados_matriz[Movimentacao::getColisaoPlayerY() + 1][Movimentacao::getColisaoPlayerX() - 1] = 16;
         placar++;
     }
-    if (matriz->dados_matriz[colisaoYPlayer - 1][colisaoXPlayer + 1] == 2)
+    if (matriz->dados_matriz[Movimentacao::getColisaoPlayerY() - 1][Movimentacao::getColisaoPlayerX() - 1] == 2)
     {
-        matriz->dados_matriz[colisaoYPlayer - 1][colisaoXPlayer + 1] = 16;
+        matriz->dados_matriz[Movimentacao::getColisaoPlayerY() - 1][Movimentacao::getColisaoPlayerX() - 1] = 16;
+        placar++;
+    }
+    if (matriz->dados_matriz[Movimentacao::getColisaoPlayerY() - 1][Movimentacao::getColisaoPlayerX() + 1] == 2)
+    {
+        matriz->dados_matriz[Movimentacao::getColisaoPlayerY() - 1][Movimentacao::getColisaoPlayerX() + 1] = 16;
         placar++;
     }
 }
@@ -207,120 +107,102 @@ int Pacman::getAtualPlacar() {
 }
 
 bool Pacman::colisaoPacmanTop(sMatriz* matriz) {
-    if (matriz->dados_matriz[colisaoYC - 2][colisaoXC - 1] != 1 && matriz->dados_matriz[colisaoYCN - 2][colisaoXCN - 1] != 1)
-    {
-        if (matriz->dados_matriz[colisaoYC - 2][colisaoXC] != 1 && matriz->dados_matriz[colisaoYCN - 2][colisaoXCN] != 1)
-        {
-            if (matriz->dados_matriz[colisaoYC - 2][colisaoXC + 1] != 1 && matriz->dados_matriz[colisaoYCN - 2][colisaoXCN + 1] != 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
-    }
-    else
-    {
-        return false;
-    }
+    return Movimentacao::colisaoPlayerTop(matriz);
 }
 bool Pacman::colisaoPacmanBottom(sMatriz* matriz) {
-    if (matriz->dados_matriz[colisaoYB + 2][colisaoXB - 1] != 1 && matriz->dados_matriz[colisaoYBN + 2][colisaoXBN - 1] != 1)
-    {
-        if (matriz->dados_matriz[colisaoYB + 2][colisaoXB] != 1 && matriz->dados_matriz[colisaoYBN + 2][colisaoXBN] != 1)
-        {
-            if (matriz->dados_matriz[colisaoYB + 2][colisaoXB + 1] != 1 && matriz->dados_matriz[colisaoYBN + 2][colisaoXBN + 1] != 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
-    }
-    else
-    {
-        return false;
-    }
+    return Movimentacao::colisaoPlayerBottom(matriz);
 }
 bool Pacman::colisaoPacmanRight(sMatriz* matriz) {
-    if (matriz->dados_matriz[colisaoYD][colisaoXD + 2] != 1 && matriz->dados_matriz[colisaoYDN][colisaoXDN + 2] != 1)
-    {
-        if (matriz->dados_matriz[colisaoYD - 1][colisaoXD + 2] != 1 && matriz->dados_matriz[colisaoYDN - 1][colisaoXDN + 2] != 1)
-        {
-            if (matriz->dados_matriz[colisaoYD + 1][colisaoXD + 2] != 1 && matriz->dados_matriz[colisaoYDN + 1][colisaoXDN + 2] != 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
-    }
-    else
-    {
-        return false;
-    }
+    return Movimentacao::colisaoPlayerRight(matriz);
 }
 bool Pacman::colisaoPacmanLeft(sMatriz* matriz) {
-
-    if (matriz->dados_matriz[colisaoYE][colisaoXE - 2] != 1 && matriz->dados_matriz[colisaoYEN][colisaoXEN - 2] != 1)
-    {
-        if (matriz->dados_matriz[colisaoYE - 1][colisaoXE - 2] != 1 && matriz->dados_matriz[colisaoYEN - 1][colisaoXEN - 2] != 1)
-        {
-            if (matriz->dados_matriz[colisaoYE + 1][colisaoXE - 2] != 1 && matriz->dados_matriz[colisaoYEN + 1][colisaoXEN - 2] != 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
-    }
-    else
-    {
-        return false;
-    }
+    return Movimentacao::colisaoPlayerLeft(matriz);
 }
 
 float Pacman::getPacmanX() {
-    return pacman_x;
+    return Movimentacao::getPlayerX();
 }
 float Pacman::getPacmanY() {
-    return pacman_y;
+    return Movimentacao::getPlayerY();
 }
 void Pacman::setPacmanX(float x) {
-    pacman_x = x;
+    Movimentacao::setPlayerX(x);
 }
 void Pacman::setPacmanY(float y) {
-    pacman_y = y;
+    Movimentacao::setPlayerY(y);
 }
 
-void Pacman::desenhaPacman(int lado, int sprite) {
+void Pacman::movimentacaoPacman(int Instrucao, sMatriz* matriz) {
+    //Verifica se o camando pode ser executado e define as variaveis para que isso aconteça
+
+    //Top
+    if (Instrucao == ALLEGRO_KEY_UP && colisaoPacmanTop(matriz) == true)
+    {
+        top = true;
+        bottom = false;
+        left = false;
+        right = false;
+        lado = 2;
+    }
+    //Bottom
+    if (Instrucao == ALLEGRO_KEY_DOWN && colisaoPacmanBottom(matriz) == true)
+    {
+        bottom = true;
+        top = false;
+        left = false;
+        right = false;
+        lado = 3;
+    }
+    //Left
+    if (Instrucao == ALLEGRO_KEY_LEFT && colisaoPacmanLeft(matriz) == true)
+    {
+        left = true;
+        top = false;
+        bottom = false;
+        right = false;
+        lado = 1;
+    }
+    //Right
+    if (Instrucao == ALLEGRO_KEY_RIGHT && colisaoPacmanRight(matriz) == true)
+    {
+        right = true;
+        top = false;
+        bottom = false;
+        left = false;
+        lado = 0;
+    }
+}
+
+void Pacman::execusaoMovPacman(sMatriz* matriz) {
+
+
+    //Executa a movimentação
+
+    if (top == true && colisaoPacmanTop(matriz) == true) { //Movimetação para Cima
+        setPacmanY(getPacmanY() - 2.0);
+        //darth_y -= 2.0;
+    }
+
+    if (bottom == true && colisaoPacmanBottom(matriz) == true) { //Movimentação para Baixo
+        setPacmanY(getPacmanY() + 2.0);
+        //darth_y += 2.0;
+    }
+
+    if (left == true && colisaoPacmanLeft(matriz) == true) { //Movimentação para Esquerda
+        setPacmanX(getPacmanX() - 2.0);
+        //darth_x -= 2.0;
+    }
+
+    if (right == true && colisaoPacmanRight(matriz) == true) { //Movimentação para Direita
+        setPacmanX(getPacmanX() + 2.0);
+        //darth_x += 2.0;
+    }
+}
+
+void Pacman::desenhaPacman(int sprite) {
     pacman = al_load_bitmap("Images/Poro/PacmanSprite.png");
 
-    al_draw_bitmap_region(pacman, lado * pacman_largura, sprite * pacman_altura, pacman_largura, pacman_altura, pacman_x, pacman_y, 0);
+    al_draw_bitmap_region(pacman, lado * pacman_largura, sprite * pacman_altura, pacman_largura, pacman_altura, Movimentacao::getPlayerX(), Movimentacao::getPlayerY(), 0);
 }
 
 ALLEGRO_BITMAP* Pacman::getPacman() {

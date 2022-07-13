@@ -15,13 +15,6 @@ using namespace std;
 
 Tijolinho::Tijolinho() {
 
-	//Inicialição do objeto dos Tijolos
-	tijolo = NULL;
-	tijolo = al_load_bitmap("Images/bloco.png");
-	if (!tijolo) {
-		printf("ERRO NO BLOCO");
-	}
-
 	//Vertical
 
 	tijoloE = NULL;
