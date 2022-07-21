@@ -48,4 +48,4 @@ Main.o: ./Codigo/Mapa.h ./Codigo/Matriz.h ./Codigo/Display.h ./Codigo/Mapa.h ./C
 	$(COMPILADOR) -c Main.cpp -o Main.o $(ALLEGRO_INCLUDE) $(ALLEGRO_FLAGS_MAIN)
 
 clean: 
-	rm *.o tic ./Codigo/*.o
+	rm *.o Main ./Codigo/*.o

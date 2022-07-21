@@ -224,8 +224,8 @@ int main(int argc, char **argv) {
             mapa.~Mapa(); //Destrutor dos elemtos do mapa
             mapa.setMapa(ptrmatriz); //Contrutor dos elemtos do mapa
 
-            atualPlacar.desenhaPlacar();
             atualPlacar.~Placar();
+            atualPlacar.desenhaPlacar();
 
             //Desenha o pacman
             player.~Pacman();
