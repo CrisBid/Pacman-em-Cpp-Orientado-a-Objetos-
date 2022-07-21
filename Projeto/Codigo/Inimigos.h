@@ -1,6 +1,7 @@
 #include "StructMatriz.h"
 #include "Movimentacao.h"
-#include <allegro5/allegro5.h>
+#include "allegro5/allegro.h"
+#include "allegro5/allegro_image.h"
 
 #ifndef INIMIGOS_H
 #define INIMIGOS_H
@@ -44,14 +45,14 @@ class Inimigos : public Movimentacao
 		int inimigos_altura;
 		int inimigos_largura;
 
-		//Variaveis de Direção
+		//Variaveis de Direï¿½ï¿½o
 		bool top;
 		bool right;
 		bool bottom;
 		bool left;
 		int lado;
 
-		//Variaveis de Randomização
+		//Variaveis de Randomizaï¿½ï¿½o
 
 		int opcao3[3];
 

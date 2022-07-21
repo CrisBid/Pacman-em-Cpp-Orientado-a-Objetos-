@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <iostream>
-#include <malloc.h>
-#include "allegro5/allegro.h"
-#include <allegro5/allegro_native_dialog.h>
-#include "allegro5/allegro_image.h"
+#include <stdlib.h>
+#include "allegro5/allegro_native_dialog.h"
 #include "allegro5/allegro_audio.h"
 #include "allegro5/allegro_acodec.h"
 #include "allegro5/allegro_font.h"
@@ -25,7 +23,7 @@ const int SCREEN_W = 900;//Tab Interno 630 = 21*30
 const int SCREEN_H = 720;//Tab Interno x   = x*30
 
 
-int main() {
+int main(int argc, char **argv) {
 
     Matriz CMatriz;
 
@@ -70,12 +68,12 @@ int main() {
         fprintf(stderr, "Falha ao inicial Allegro!\n");
         return -1;
     }
-    al_init_image_addon();//Função de Imagem
+    al_init_image_addon();//Funï¿½ï¿½o de Imagem
     al_install_keyboard();//Funcoes de Teclado
     al_init_image_addon();//Imagens
-    //al_install_audio(); //Funçoes de audio
-    //al_init_acodec_addon();//Funçoes de audio
-    //al_reserve_samples(1);//Funçoes de audio
+    //al_install_audio(); //Funï¿½oes de audio
+    //al_init_acodec_addon();//Funï¿½oes de audio
+    //al_reserve_samples(1);//Funï¿½oes de audio
 
     timer = al_create_timer(1.0 / FPS);
     if (!timer) {

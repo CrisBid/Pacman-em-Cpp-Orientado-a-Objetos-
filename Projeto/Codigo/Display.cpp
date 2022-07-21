@@ -1,8 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
-#include <allegro5/allegro5.h>
-#include <allegro5/allegro_image.h>
 
 #include "Display.h"
 
@@ -10,7 +8,7 @@
 
 Display::Display()
 {
-	//Inicialização do display
+	//Inicializaï¿½ï¿½o do display
 
 	display = NULL;
 

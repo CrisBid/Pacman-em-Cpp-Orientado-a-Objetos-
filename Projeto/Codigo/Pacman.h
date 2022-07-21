@@ -3,7 +3,8 @@
 #include "StructMatriz.h"
 #include "Movimentacao.h"
 
-#include <allegro5/allegro5.h>
+#include "allegro5/allegro.h"
+#include "allegro5/allegro_image.h"
 
 #ifndef PACMAN_H
 #define PACMAN_H
@@ -52,7 +53,7 @@ private:
 	int pacman_altura;
 	int pacman_largura;
 
-	//Variaveis de Direção
+	//Variaveis de Direï¿½ï¿½o
 	bool top;
 	bool right;
 	bool bottom;

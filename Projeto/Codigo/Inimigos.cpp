@@ -5,8 +5,6 @@
 #include <stdio.h>
 #include<math.h>
 #include<time.h>
-#include <allegro5/allegro5.h>
-#include <allegro5/allegro_image.h>
 
 using namespace std;
 
@@ -18,16 +16,19 @@ Inimigos::Inimigos()
     inimigos_altura = 30;
     inimigos_largura = 30;
 
-    //Variaveis de Direção
+    //Variaveis de Direï¿½ï¿½o
     top = false;
     right = false;
     bottom = false;
     left = false;
     lado = 0;
 
-    //Variaveis de Randomização
+    //Variaveis de Randomizaï¿½ï¿½o
 
-    opcao3[2] = {0};
+    for (size_t i = 0; i < 2; i++)
+    {
+        opcao3[i] = 0;
+    }
 
     aleatorio2 = 0;
     aleatorio3 = 0;
@@ -44,16 +45,19 @@ Inimigos::Inimigos(int x, int y) :Movimentacao(x, y)
     inimigos_altura = 30;
     inimigos_largura = 30;
 
-    //Variaveis de Direção
+    //Variaveis de Direï¿½ï¿½o
     top = false;
     right = false;
     bottom = false;
     left = false;
     lado = 0;
 
-    //Variaveis de Randomização
+    //Variaveis de Randomizaï¿½ï¿½o
 
-    opcao3[2] = {0};
+    for (size_t i = 0; i < 2; i++)
+    {
+        opcao3[i] = 0;
+    }
 
     aleatorio2 = 0;
     aleatorio3 = 0;
@@ -178,7 +182,7 @@ void Inimigos::sorteioDirecao(sMatriz* matriz) {
 }
 
 void Inimigos::movimentacaoInimigos(sMatriz* matriz) {
-    //Verifica se o camando pode ser executado e define as variaveis para que isso aconteça
+    //Verifica se o camando pode ser executado e define as variaveis para que isso aconteï¿½a
 
     //Top
     if (Instrucao == ALLEGRO_KEY_UP && colisaoInimigosTop(matriz) == true && bottom != true)
@@ -221,24 +225,24 @@ void Inimigos::movimentacaoInimigos(sMatriz* matriz) {
 void Inimigos::execusaoMovInimigos(sMatriz* matriz) {
 
 
-    //Executa a movimentação
+    //Executa a movimentaï¿½ï¿½o
 
-    if (top == true && colisaoInimigosTop(matriz) == true) { //Movimetação para Cima
+    if (top == true && colisaoInimigosTop(matriz) == true) { //Movimetaï¿½ï¿½o para Cima
         setInimigosY(getInimigosY() - 2.0);
         //darth_y -= 2.0;
     }
 
-    if (bottom == true && colisaoInimigosBottom(matriz) == true) { //Movimentação para Baixo
+    if (bottom == true && colisaoInimigosBottom(matriz) == true) { //Movimentaï¿½ï¿½o para Baixo
         setInimigosY(getInimigosY() + 2.0);
         //darth_y += 2.0;
     }
 
-    if (left == true && colisaoInimigosLeft(matriz) == true) { //Movimentação para Esquerda
+    if (left == true && colisaoInimigosLeft(matriz) == true) { //Movimentaï¿½ï¿½o para Esquerda
         setInimigosX(getInimigosX() - 2.0);
         //darth_x -= 2.0;
     }
 
-    if (right == true && colisaoInimigosRight(matriz) == true) { //Movimentação para Direita
+    if (right == true && colisaoInimigosRight(matriz) == true) { //Movimentaï¿½ï¿½o para Direita
         setInimigosX(getInimigosX() + 2.0);
         //darth_x += 2.0;
     }

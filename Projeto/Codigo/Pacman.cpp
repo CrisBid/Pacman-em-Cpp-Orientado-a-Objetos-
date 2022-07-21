@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-#include <allegro5/allegro5.h>
-#include <allegro5/allegro_image.h>
 
 #include "Pacman.h"
 

@@ -1,8 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
-#include <allegro5/allegro5.h>
-#include <allegro5/allegro_image.h>
+
 
 #include "Tijolinho.h"
 
@@ -51,7 +50,7 @@ Tijolinho::Tijolinho() {
 		printf("ERRO NO BLOCO");
 	}
 
-	//Encruzilhadas de 2 direçoes
+	//Encruzilhadas de 2 direï¿½oes
 
 	tijoloQ1 = NULL;
 	tijoloQ1 = al_load_bitmap("Images/Mapa/2Direcao-1.png");
@@ -74,7 +73,7 @@ Tijolinho::Tijolinho() {
 		printf("ERRO NO BLOCO");
 	}
 
-	//Encruzilhadas de 0 direçoes
+	//Encruzilhadas de 0 direï¿½oes
 
 	tijoloQ5 = NULL;
 	tijoloQ5 = al_load_bitmap("Images/Mapa/0Direcao-1.png");
@@ -101,7 +100,7 @@ Tijolinho::Tijolinho() {
 
 
 void Tijolinho::setTijolos(sMatriz *matriz) {
-	for (int i = 0; i < matriz->matriz_altura; i++) //Crição do mapa a partir da matriz
+	for (int i = 0; i < matriz->matriz_altura; i++) //Criï¿½ï¿½o do mapa a partir da matriz
 	{
 		for (int j = 0; j < matriz->matriz_largura; j++)
 		{
@@ -137,7 +136,7 @@ void Tijolinho::setTijolos(sMatriz *matriz) {
 				//al_draw_bitmap(blocopng, 130+(10 * j), 60+(10 * i), 0);
 				al_draw_bitmap_region(tijoloDH, 0, 0, 10, 10, 150 + (10 * j), 50 + (10 * i), 0);
 			}
-			//2 Direçoes Encruzilhada
+			//2 Direï¿½oes Encruzilhada
 			if (matriz->dados_matriz[i][j] == 31)
 			{
 				//al_draw_bitmap(blocopng, 130+(10 * j), 60+(10 * i), 0);
@@ -158,7 +157,7 @@ void Tijolinho::setTijolos(sMatriz *matriz) {
 				//al_draw_bitmap(blocopng, 130+(10 * j), 60+(10 * i), 0);
 				al_draw_bitmap_region(tijoloQ4, 0, 0, 10, 10, 150 + (10 * j), 50 + (10 * i), 0);
 			}
-			//0 Direçoes Encruzilhada
+			//0 Direï¿½oes Encruzilhada
 			if (matriz->dados_matriz[i][j] == 35)
 			{																						//35
 				//al_draw_bitmap(blocopng, 130+(10 * j), 60+(10 * i), 0);                          //1 0 0

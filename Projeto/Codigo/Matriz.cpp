@@ -1,8 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
-#include <allegro5/allegro5.h>
-#include <allegro5/allegro_image.h>
 
 #include "Matriz.h"
 
@@ -10,11 +8,11 @@
 
 Matriz::Matriz()
 {
-	//Inicialização Altura/Largura da matriz
+	//Inicializaï¿½ï¿½o Altura/Largura da matriz
 	ptrmatriz.matriz_altura = 61;
 	ptrmatriz.matriz_largura = 55;
 
-	//Inicialização da matriz
+	//Inicializaï¿½ï¿½o da matriz
 	for (int i = 0; i < ptrmatriz.matriz_altura; i++)
 	{
 		for (int j = 0; j < ptrmatriz.matriz_largura; j++)
@@ -23,7 +21,7 @@ Matriz::Matriz()
 		}
 	}
 
-	//Inicialização do arquivo
+	//Inicializaï¿½ï¿½o do arquivo
 	inFile.open("Arquivos/Mapa.txt", ios::in); // abre o arquivo para leitura
 	if (!inFile) //Verifica se o arquivo foi aberto
 	{

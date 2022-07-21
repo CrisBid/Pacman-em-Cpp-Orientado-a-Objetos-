@@ -1,8 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
-#include <allegro5/allegro5.h>
-#include <allegro5/allegro_image.h>
 
 #include "Pirula.h"
 
@@ -15,7 +13,7 @@ using namespace std;
 
 Pirula::Pirula() {
 
-	//Inicialição do objeto das Pirulas
+	//Inicialiï¿½ï¿½o do objeto das Pirulas
 	pirula = NULL;
 	pirula = al_load_bitmap("Images/Mapa/MeioBiscoito.png");
 	if (!pirula) {
@@ -26,7 +24,7 @@ Pirula::Pirula() {
 
 
 void Pirula::setPirula(sMatriz* matriz) {
-	for (int i = 0; i < matriz->matriz_altura; i++) //Crição do mapa a partir da matriz
+	for (int i = 0; i < matriz->matriz_altura; i++) //Criï¿½ï¿½o do mapa a partir da matriz
 	{
 		for (int j = 0; j < matriz->matriz_largura; j++)
 		{

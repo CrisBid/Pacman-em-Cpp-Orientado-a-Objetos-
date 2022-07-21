@@ -1,7 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
-#include <allegro5/allegro5.h>
 
 #include "Pirula.h"
 
@@ -10,7 +9,7 @@
 using namespace std;
 
 Mapa::Mapa() {
-	//Inicialização da imagem
+	//Inicializaï¿½ï¿½o da imagem
 	image = NULL;
 
 	if (!image) {

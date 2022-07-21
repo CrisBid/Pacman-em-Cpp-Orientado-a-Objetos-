@@ -1,6 +1,8 @@
 #include <iostream>
 #include "StructMatriz.h"
 
+#include "allegro5/allegro.h"
+
 #include <fstream>
 
 #ifndef MATRIZ_H
