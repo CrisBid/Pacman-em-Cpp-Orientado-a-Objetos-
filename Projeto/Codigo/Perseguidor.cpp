@@ -1,4 +1,4 @@
-#include "Inimigos.h"
+﻿#include "Perseguidor.h"
 
 #include <iostream>
 #include <stdlib.h>
@@ -8,7 +8,7 @@
 
 using namespace std;
 
-Inimigos::Inimigos()
+Perseguidor::Perseguidor()
 {
     inimigo = NULL;
 
@@ -35,9 +35,12 @@ Inimigos::Inimigos()
 
     Instrucao = 0;
 
+    bufferX = 0.0;
+    bufferY = 0.0;
+
 }
 
-Inimigos::Inimigos(int x, int y) :Movimentacao(x, y)
+Perseguidor::Perseguidor(int x, int y) :Inimigos(x, y)
 {
     inimigo = NULL;
 
@@ -64,44 +67,46 @@ Inimigos::Inimigos(int x, int y) :Movimentacao(x, y)
 
     Instrucao = 0;
 
+    bufferX = 0.0;
+    bufferY = 0.0;
 
 }
 
-void Inimigos::posicaoInimigos() {
-    Movimentacao::posicaoPlayer();
+void Perseguidor::posicaoInimigos() {
+    Inimigos::posicaoPlayer();
 }
 
-bool Inimigos::colisaoInimigos(sMatriz* matriz) {
-    return Movimentacao::colisaoPlayer(matriz);
+bool Perseguidor::colisaoInimigos(sMatriz* matriz) {
+    return Inimigos::colisaoPlayer(matriz);
 }
 
-bool Inimigos::colisaoInimigosTop(sMatriz* matriz) {
-    return Movimentacao::colisaoPlayerTop(matriz);
+bool Perseguidor::colisaoInimigosTop(sMatriz* matriz) {
+    return Inimigos::colisaoPlayerTop(matriz);
 }
-bool Inimigos::colisaoInimigosBottom(sMatriz* matriz) {
-    return Movimentacao::colisaoPlayerBottom(matriz);
+bool Perseguidor::colisaoInimigosBottom(sMatriz* matriz) {
+    return Inimigos::colisaoPlayerBottom(matriz);
 }
-bool Inimigos::colisaoInimigosRight(sMatriz* matriz) {
-    return Movimentacao::colisaoPlayerRight(matriz);
+bool Perseguidor::colisaoInimigosRight(sMatriz* matriz) {
+    return Inimigos::colisaoPlayerRight(matriz);
 }
-bool Inimigos::colisaoInimigosLeft(sMatriz* matriz) {
-    return Movimentacao::colisaoPlayerLeft(matriz);
-}
-
-float Inimigos::getInimigosX() {
-    return Movimentacao::getPlayerX();
-}
-float Inimigos::getInimigosY() {
-    return Movimentacao::getPlayerY();
-}
-void Inimigos::setInimigosX(float x) {
-    Movimentacao::setPlayerX(x);
-}
-void Inimigos::setInimigosY(float y) {
-    Movimentacao::setPlayerY(y);
+bool Perseguidor::colisaoInimigosLeft(sMatriz* matriz) {
+    return Inimigos::colisaoPlayerLeft(matriz);
 }
 
-void Inimigos::sorteioDirecao(sMatriz* matriz, float pacX, float pacY) {
+float Perseguidor::getInimigosX() {
+    return Inimigos::getPlayerX();
+}
+float Perseguidor::getInimigosY() {
+    return Inimigos::getPlayerY();
+}
+void Perseguidor::setInimigosX(float x) {
+    Inimigos::setPlayerX(x);
+}
+void Perseguidor::setInimigosY(float y) {
+    Inimigos::setPlayerY(y);
+}
+
+void Perseguidor::sorteioDirecao(sMatriz* matriz, float pacX, float pacY) {
     /*
     if (colisaoInimigosTop(matriz) == true)
     {
@@ -168,24 +173,94 @@ void Inimigos::sorteioDirecao(sMatriz* matriz, float pacX, float pacY) {
     }
     cout << opcao3[0] << opcao3[1] << opcao3[2] << endl;
     */
-    
-    int flag = 0;
+
+    int distanciaPacX;
+    int distanciaPacY;
 
     int direcoes[] = { ALLEGRO_KEY_LEFT, ALLEGRO_KEY_RIGHT ,ALLEGRO_KEY_UP, ALLEGRO_KEY_DOWN };
 
-    srand(time(NULL));
+    distanciaPacX = pacX - getInimigosX();
+    distanciaPacY = pacY - getInimigosY();
 
-    flag = rand() % 4;
-    
-    Instrucao = direcoes[flag];
-    
+    if (distanciaPacX < distanciaPacY)
+    {
+        if (distanciaPacX > 0)
+        {
+            Instrucao = direcoes[1];
+            cout << "Indo pra Direira" << endl;
+        }
+        else if (distanciaPacX >= 0)
+        {
+            if (distanciaPacY >= 0)
+            {
+                Instrucao = direcoes[3];
+                cout << "Indo pra Baixo" << endl;
+            }
+            else
+            {
+                Instrucao = direcoes[2];
+                cout << "Indo pra Cima" << endl;
+            }
+        }
+        else
+        {
+            Instrucao = direcoes[0];
+            cout << "Indo pra Esquerda" << endl;
+        }
+    }
+    else
+    {
+        if (distanciaPacY > 0)
+        {
+            Instrucao = direcoes[3];
+            cout << "Indo pra Baixo" << endl;
+        }
+        else if (distanciaPacY == 0)
+        {
+            if (distanciaPacX >= 0)
+            {
+                Instrucao = direcoes[1];
+                cout << "Indo pra Direira" << endl;
+            }
+            else
+            {
+                Instrucao = direcoes[0];
+                cout << "Indo pra Esquerda" << endl;
+            }
+        }
+        else
+        {
+            Instrucao = direcoes[2];
+            cout << "Indo pra Cima" << endl;
+        }
+    }
+
+
+    if (bufferX == getInimigosX() && bufferY == getInimigosY())
+    {
+        int flag = 0;
+
+        srand(time(NULL));
+
+        flag = rand() % 4;
+
+        Instrucao = direcoes[flag];
+
+        cout << "X" << bufferX << endl;
+        cout << "Y" << bufferY << endl;
+    }
+
+    bufferX = getInimigosX();
+
+    bufferY = getInimigosY();
+
 }
 
-void Inimigos::movimentacaoInimigos(sMatriz* matriz) {
+void Perseguidor::movimentacaoInimigos(sMatriz* matriz) {
     //Verifica se o camando pode ser executado e define as variaveis para que isso aconte�a
 
     //Top
-    if (Instrucao == ALLEGRO_KEY_UP && colisaoInimigosTop(matriz) == true && bottom != true && top != true)
+    if (Instrucao == ALLEGRO_KEY_UP && colisaoInimigosTop(matriz) == true && bottom != true)
     {
         top = true;
         bottom = false;
@@ -194,7 +269,7 @@ void Inimigos::movimentacaoInimigos(sMatriz* matriz) {
         lado = 2;
     }
     //Bottom
-    if (Instrucao == ALLEGRO_KEY_DOWN && colisaoInimigosBottom(matriz) == true && top != true && bottom != true)
+    if (Instrucao == ALLEGRO_KEY_DOWN && colisaoInimigosBottom(matriz) == true && top != true)
     {
         bottom = true;
         top = false;
@@ -203,7 +278,7 @@ void Inimigos::movimentacaoInimigos(sMatriz* matriz) {
         lado = 3;
     }
     //Left
-    if (Instrucao == ALLEGRO_KEY_LEFT && colisaoInimigosLeft(matriz) == true && right != true && left != true)
+    if (Instrucao == ALLEGRO_KEY_LEFT && colisaoInimigosLeft(matriz) == true && right != true)
     {
         left = true;
         top = false;
@@ -212,7 +287,7 @@ void Inimigos::movimentacaoInimigos(sMatriz* matriz) {
         lado = 1;
     }
     //Right
-    if (Instrucao == ALLEGRO_KEY_RIGHT && colisaoInimigosRight(matriz) == true && left != true && right != true)
+    if (Instrucao == ALLEGRO_KEY_RIGHT && colisaoInimigosRight(matriz) == true && left != true)
     {
         right = true;
         top = false;
@@ -222,7 +297,7 @@ void Inimigos::movimentacaoInimigos(sMatriz* matriz) {
     }
 }
 
-void Inimigos::execusaoMovInimigos(sMatriz* matriz) {
+void Perseguidor::execusaoMovInimigos(sMatriz* matriz) {
 
 
     //Executa a movimenta��o
@@ -248,23 +323,22 @@ void Inimigos::execusaoMovInimigos(sMatriz* matriz) {
     }
 }
 
-void Inimigos::desenhaInimigos(int sprite, int tipo) {
+void Perseguidor::desenhaInimigos(int sprite, int tipo) {
     inimigo = al_load_bitmap("Images/Teemo/TeemoSprite.png");
 
-    al_draw_bitmap_region(inimigo, tipo *  inimigos_largura, 0*inimigos_altura, inimigos_largura, inimigos_altura, Movimentacao::getPlayerX(), Movimentacao::getPlayerY(), 0);
+    al_draw_bitmap_region(inimigo, tipo * inimigos_largura, 0 * inimigos_altura, inimigos_largura, inimigos_altura, Inimigos::getPlayerX(), Inimigos::getPlayerY(), 0);
 }
 
-ALLEGRO_BITMAP* Inimigos::getInimigos() {
+ALLEGRO_BITMAP* Perseguidor::getInimigos() {
     return inimigo;
 }
 
-void Inimigos::Destrutor()
+void Perseguidor::Destrutor()
 {
     al_destroy_bitmap(inimigo); //Destroi a tela
 }
 
-
-Inimigos::~Inimigos()
+Perseguidor::~Perseguidor()
 {
     al_destroy_bitmap(inimigo); //Destroi a tela
 }

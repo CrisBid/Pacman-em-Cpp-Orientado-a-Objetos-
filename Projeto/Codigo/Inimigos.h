@@ -29,12 +29,14 @@ class Inimigos : public Movimentacao
 		void setInimigosX(float);
 		void setInimigosY(float);
 
-		void sorteioDirecao(sMatriz* matriz);
+		virtual void sorteioDirecao(sMatriz* matriz, float, float);
 
-		void movimentacaoInimigos(sMatriz*);
-		void execusaoMovInimigos(sMatriz*);
+		virtual void movimentacaoInimigos(sMatriz*);
+		virtual void execusaoMovInimigos(sMatriz*);
 
-		void desenhaInimigos(int, int);
+		virtual void desenhaInimigos(int, int);
+
+		virtual void Destrutor();
 
 		~Inimigos();
 

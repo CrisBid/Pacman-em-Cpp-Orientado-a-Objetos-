@@ -73,6 +73,12 @@
     <Filter Include="Arquivos de Cabeçalho\Entidades\Pacman">
       <UniqueIdentifier>{56dfdd3d-4761-4382-87a1-6e1da8ac92ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Entidades\Inimigos\Movimentação">
+      <UniqueIdentifier>{217df5a1-dc8c-48aa-a328-efe163ba6039}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\Bibliotecas\Entidades\Inimigos\Movimentação">
+      <UniqueIdentifier>{a2b223e0-c2bb-4fc3-8691-da1ed43b43bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -109,6 +115,12 @@
     <ClCompile Include="Codigo\Inimigos.cpp">
       <Filter>Arquivos de Origem\Bibliotecas\Entidades\Inimigos</Filter>
     </ClCompile>
+    <ClCompile Include="Codigo\Aleatorios.cpp">
+      <Filter>Arquivos de Origem\Bibliotecas\Entidades\Inimigos\Movimentação</Filter>
+    </ClCompile>
+    <ClCompile Include="Codigo\Perseguidor.cpp">
+      <Filter>Arquivos de Origem\Bibliotecas\Entidades\Inimigos\Movimentação</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Codigo\StructMatriz.h">
@@ -140,6 +152,12 @@
     </ClInclude>
     <ClInclude Include="Codigo\Inimigos.h">
       <Filter>Arquivos de Cabeçalho\Entidades\Inimigos</Filter>
+    </ClInclude>
+    <ClInclude Include="Codigo\Aleatorios.h">
+      <Filter>Arquivos de Cabeçalho\Entidades\Inimigos\Movimentação</Filter>
+    </ClInclude>
+    <ClInclude Include="Codigo\Perseguidor.h">
+      <Filter>Arquivos de Cabeçalho\Entidades\Inimigos\Movimentação</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -12,7 +12,10 @@
 #include "Codigo/Display.h"
 #include "Codigo/Pacman.h"
 #include "Codigo/Inimigos.h"
+#include "Codigo/Aleatorios.h"
+#include "Codigo/Perseguidor.h"
 #include "Codigo/Placar.h"
+
 
 #include <math.h>
 
@@ -33,7 +36,16 @@ int main(int argc, char **argv) {
 
     //Inimigos fantasmas(360,300), fantasmas2(360, 340), fantasmas3(460, 300), fantasmas4(460, 340);
 
-    Inimigos fantasmas(410,300), fantasmas2(160, 620), fantasmas3(660, 620), fantasmas4(660, 60);
+    Perseguidor fantasmas(410, 300);
+    Aleatorios fantasmas2(160, 620), fantasmas3(660, 620), fantasmas4(660, 60);
+
+    Inimigos* vetInimigos[4];
+
+    vetInimigos[0] = &fantasmas;
+    vetInimigos[1] = &fantasmas2;
+    vetInimigos[2] = &fantasmas3;
+    vetInimigos[3] = &fantasmas4;
+    
 
     Placar atualPlacar;
 
@@ -133,6 +145,17 @@ int main(int argc, char **argv) {
         player.posicaoPacman();
         player.colisaoPacmanPirula(ptrmatriz);
 
+        for (int i = 0; i < 4; i++)
+        {
+            vetInimigos[i]->posicaoInimigos();
+            vetInimigos[i]->sorteioDirecao(ptrmatriz, player.getPacmanX(), player.getPacmanY());
+
+            vetInimigos[i]->movimentacaoInimigos(ptrmatriz);
+            vetInimigos[i]->execusaoMovInimigos(ptrmatriz);
+        }
+        
+        /*
+
         fantasmas.posicaoInimigos();
         fantasmas.sorteioDirecao(ptrmatriz);
 
@@ -156,6 +179,8 @@ int main(int argc, char **argv) {
 
         fantasmas4.movimentacaoInimigos(ptrmatriz);
         fantasmas4.execusaoMovInimigos(ptrmatriz);
+
+        */
 
         atualPlacar.set_placar(player.getAtualPlacar());
         
@@ -221,7 +246,7 @@ int main(int argc, char **argv) {
             al_draw_bitmap(image, 0, 0, 0); //Desenha a imagem de fundo
 
             //Chamada dos elemtos do mapa
-            mapa.~Mapa(); //Destrutor dos elemtos do mapa
+            mapa.~Mapa(); //Destrutor dos elementos do mapa
             mapa.setMapa(ptrmatriz); //Contrutor dos elemtos do mapa
 
             atualPlacar.~Placar();
@@ -233,25 +258,87 @@ int main(int argc, char **argv) {
 
             //Desenha os inimigos
 
+            for (int i = 0; i < 4; i++)
+            {
+                vetInimigos[i]->Destrutor();
+                vetInimigos[i]->desenhaInimigos(sprite, i);
+            }
+
+            /*
+
             //Inimigo 1
-            fantasmas.~Inimigos();
+            fantasmas.Destrutor();
             fantasmas.desenhaInimigos(sprite, 0);
 
             //Inimigo 2
-            fantasmas2.~Inimigos();
+            fantasmas2.Destrutor();
             fantasmas2.desenhaInimigos(sprite, 1);
 
             //Inimigo 3
-            fantasmas3.~Inimigos();
+            fantasmas3.Destrutor();
             fantasmas3.desenhaInimigos(sprite, 2);
 
             //Inimigo 4
-            fantasmas4.~Inimigos();
+            fantasmas4.Destrutor();
             fantasmas4.desenhaInimigos(sprite, 3);
             
+            */
 
             al_flip_display();
         }
+
+        
+        for (int i = 0; i < 4; i++)
+        {
+            if (player.getPacmanX() == vetInimigos[i]->getInimigosX() && player.getPacmanY() == vetInimigos[i]->getInimigosY())
+            {
+                termina = true;
+                cout << "VC PERDEU" << endl;
+            }
+            if (player.getPacmanX() == vetInimigos[i]->getInimigosX()+ 2 && player.getPacmanY() == vetInimigos[i]->getInimigosY())
+            {
+                termina = true;
+                cout << "VC PERDEU" << endl;
+            }
+            if (player.getPacmanX() == vetInimigos[i]->getInimigosX() - 2 && player.getPacmanY() == vetInimigos[i]->getInimigosY())
+            {
+                termina = true;
+                cout << "VC PERDEU" << endl;
+            }
+            if (player.getPacmanX() == vetInimigos[i]->getInimigosX() && player.getPacmanY() == vetInimigos[i]->getInimigosY() + 2)
+            {
+                termina = true;
+                cout << "VC PERDEU" << endl;
+            }
+            if (player.getPacmanX() == vetInimigos[i]->getInimigosX() && player.getPacmanY() == vetInimigos[i]->getInimigosY() - 2)
+            {
+                termina = true;
+                cout << "VC PERDEU" << endl;
+            }
+            if (player.getPacmanX() == vetInimigos[i]->getInimigosX() + 2 && player.getPacmanY() == vetInimigos[i]->getInimigosY() + 2)
+            {
+                termina = true;
+                cout << "VC PERDEU" << endl;
+            }
+            if (player.getPacmanX() == vetInimigos[i]->getInimigosX() - 2 && player.getPacmanY() == vetInimigos[i]->getInimigosY() + 2)
+            {
+                termina = true;
+                cout << "VC PERDEU" << endl;
+            }
+            if (player.getPacmanX() == vetInimigos[i]->getInimigosX() - 2 && player.getPacmanY() == vetInimigos[i]->getInimigosY() - 2)
+            {
+                termina = true;
+                cout << "VC PERDEU" << endl;
+            }
+            if (player.getPacmanX() == vetInimigos[i]->getInimigosX() + 2 && player.getPacmanY() == vetInimigos[i]->getInimigosY() - 2)
+            {
+                termina = true;
+                cout << "VC PERDEU" << endl;
+            }
+        }
+
+        /*
+
         if (player.getPacmanX() == fantasmas.getInimigosX() && player.getPacmanY() == fantasmas.getInimigosY())
         {
             termina = true;
@@ -272,6 +359,8 @@ int main(int argc, char **argv) {
             termina = true;
             cout << "VC PERDEU" << endl;
         }
+
+        */
     }
 
     free(ptrmatriz); //Desaloca o ponteiro que aponta para a matriz

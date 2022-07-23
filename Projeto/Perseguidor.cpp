@@ -1,4 +1,4 @@
-#include "Inimigos.h"
+﻿#include "Perseguidor.h"
 
 #include <iostream>
 #include <stdlib.h>
@@ -8,7 +8,7 @@
 
 using namespace std;
 
-Inimigos::Inimigos()
+Perseguidor::Perseguidor()
 {
     inimigo = NULL;
 
@@ -101,7 +101,7 @@ void Inimigos::setInimigosY(float y) {
     Movimentacao::setPlayerY(y);
 }
 
-void Inimigos::sorteioDirecao(sMatriz* matriz, float pacX, float pacY) {
+void Inimigos::sorteioDirecao(sMatriz* matriz) {
     /*
     if (colisaoInimigosTop(matriz) == true)
     {
@@ -168,7 +168,7 @@ void Inimigos::sorteioDirecao(sMatriz* matriz, float pacX, float pacY) {
     }
     cout << opcao3[0] << opcao3[1] << opcao3[2] << endl;
     */
-    
+
     int flag = 0;
 
     int direcoes[] = { ALLEGRO_KEY_LEFT, ALLEGRO_KEY_RIGHT ,ALLEGRO_KEY_UP, ALLEGRO_KEY_DOWN };
@@ -176,9 +176,9 @@ void Inimigos::sorteioDirecao(sMatriz* matriz, float pacX, float pacY) {
     srand(time(NULL));
 
     flag = rand() % 4;
-    
+
     Instrucao = direcoes[flag];
-    
+
 }
 
 void Inimigos::movimentacaoInimigos(sMatriz* matriz) {
@@ -251,18 +251,12 @@ void Inimigos::execusaoMovInimigos(sMatriz* matriz) {
 void Inimigos::desenhaInimigos(int sprite, int tipo) {
     inimigo = al_load_bitmap("Images/Teemo/TeemoSprite.png");
 
-    al_draw_bitmap_region(inimigo, tipo *  inimigos_largura, 0*inimigos_altura, inimigos_largura, inimigos_altura, Movimentacao::getPlayerX(), Movimentacao::getPlayerY(), 0);
+    al_draw_bitmap_region(inimigo, tipo * inimigos_largura, 0 * inimigos_altura, inimigos_largura, inimigos_altura, Movimentacao::getPlayerX(), Movimentacao::getPlayerY(), 0);
 }
 
 ALLEGRO_BITMAP* Inimigos::getInimigos() {
     return inimigo;
 }
-
-void Inimigos::Destrutor()
-{
-    al_destroy_bitmap(inimigo); //Destroi a tela
-}
-
 
 Inimigos::~Inimigos()
 {

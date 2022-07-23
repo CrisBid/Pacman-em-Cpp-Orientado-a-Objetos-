@@ -147,24 +147,28 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Codigo\Aleatorios.cpp" />
     <ClCompile Include="Codigo\Display.cpp" />
     <ClCompile Include="Codigo\Inimigos.cpp" />
     <ClCompile Include="Codigo\Mapa.cpp" />
     <ClCompile Include="Codigo\Matriz.cpp" />
     <ClCompile Include="Codigo\Movimentacao.cpp" />
     <ClCompile Include="Codigo\Pacman.cpp" />
+    <ClCompile Include="Codigo\Perseguidor.cpp" />
     <ClCompile Include="Codigo\Pirula.cpp" />
     <ClCompile Include="Codigo\Placar.cpp" />
     <ClCompile Include="Codigo\Tijolinho.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Codigo\Aleatorios.h" />
     <ClInclude Include="Codigo\Display.h" />
     <ClInclude Include="Codigo\Inimigos.h" />
     <ClInclude Include="Codigo\Matriz.h" />
     <ClInclude Include="Codigo\Mapa.h" />
     <ClInclude Include="Codigo\Movimentacao.h" />
     <ClInclude Include="Codigo\Pacman.h" />
+    <ClInclude Include="Codigo\Perseguidor.h" />
     <ClInclude Include="Codigo\Pirula.h" />
     <ClInclude Include="Codigo\Placar.h" />
     <ClInclude Include="Codigo\StructMatriz.h" />

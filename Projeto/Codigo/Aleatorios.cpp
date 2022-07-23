@@ -1,4 +1,4 @@
-#include "Inimigos.h"
+﻿#include "Aleatorios.h"
 
 #include <iostream>
 #include <stdlib.h>
@@ -8,7 +8,7 @@
 
 using namespace std;
 
-Inimigos::Inimigos()
+Aleatorios::Aleatorios()
 {
     inimigo = NULL;
 
@@ -37,7 +37,7 @@ Inimigos::Inimigos()
 
 }
 
-Inimigos::Inimigos(int x, int y) :Movimentacao(x, y)
+Aleatorios::Aleatorios(int x, int y) :Inimigos(x, y)
 {
     inimigo = NULL;
 
@@ -67,41 +67,41 @@ Inimigos::Inimigos(int x, int y) :Movimentacao(x, y)
 
 }
 
-void Inimigos::posicaoInimigos() {
-    Movimentacao::posicaoPlayer();
+void Aleatorios::posicaoInimigos() {
+    Inimigos::posicaoPlayer();
 }
 
-bool Inimigos::colisaoInimigos(sMatriz* matriz) {
-    return Movimentacao::colisaoPlayer(matriz);
+bool Aleatorios::colisaoInimigos(sMatriz* matriz) {
+    return Inimigos::colisaoPlayer(matriz);
 }
 
-bool Inimigos::colisaoInimigosTop(sMatriz* matriz) {
-    return Movimentacao::colisaoPlayerTop(matriz);
+bool Aleatorios::colisaoInimigosTop(sMatriz* matriz) {
+    return Inimigos::colisaoPlayerTop(matriz);
 }
-bool Inimigos::colisaoInimigosBottom(sMatriz* matriz) {
-    return Movimentacao::colisaoPlayerBottom(matriz);
+bool Aleatorios::colisaoInimigosBottom(sMatriz* matriz) {
+    return Inimigos::colisaoPlayerBottom(matriz);
 }
-bool Inimigos::colisaoInimigosRight(sMatriz* matriz) {
-    return Movimentacao::colisaoPlayerRight(matriz);
+bool Aleatorios::colisaoInimigosRight(sMatriz* matriz) {
+    return Inimigos::colisaoPlayerRight(matriz);
 }
-bool Inimigos::colisaoInimigosLeft(sMatriz* matriz) {
-    return Movimentacao::colisaoPlayerLeft(matriz);
-}
-
-float Inimigos::getInimigosX() {
-    return Movimentacao::getPlayerX();
-}
-float Inimigos::getInimigosY() {
-    return Movimentacao::getPlayerY();
-}
-void Inimigos::setInimigosX(float x) {
-    Movimentacao::setPlayerX(x);
-}
-void Inimigos::setInimigosY(float y) {
-    Movimentacao::setPlayerY(y);
+bool Aleatorios::colisaoInimigosLeft(sMatriz* matriz) {
+    return Inimigos::colisaoPlayerLeft(matriz);
 }
 
-void Inimigos::sorteioDirecao(sMatriz* matriz, float pacX, float pacY) {
+float Aleatorios::getInimigosX() {
+    return Inimigos::getPlayerX();
+}
+float Aleatorios::getInimigosY() {
+    return Inimigos::getPlayerY();
+}
+void Aleatorios::setInimigosX(float x) {
+    Inimigos::setPlayerX(x);
+}
+void Aleatorios::setInimigosY(float y) {
+    Inimigos::setPlayerY(y);
+}
+
+void Aleatorios::sorteioDirecao(sMatriz* matriz, float pacX, float pacY) {
     /*
     if (colisaoInimigosTop(matriz) == true)
     {
@@ -168,7 +168,7 @@ void Inimigos::sorteioDirecao(sMatriz* matriz, float pacX, float pacY) {
     }
     cout << opcao3[0] << opcao3[1] << opcao3[2] << endl;
     */
-    
+
     int flag = 0;
 
     int direcoes[] = { ALLEGRO_KEY_LEFT, ALLEGRO_KEY_RIGHT ,ALLEGRO_KEY_UP, ALLEGRO_KEY_DOWN };
@@ -176,12 +176,12 @@ void Inimigos::sorteioDirecao(sMatriz* matriz, float pacX, float pacY) {
     srand(time(NULL));
 
     flag = rand() % 4;
-    
+
     Instrucao = direcoes[flag];
-    
+
 }
 
-void Inimigos::movimentacaoInimigos(sMatriz* matriz) {
+void Aleatorios::movimentacaoInimigos(sMatriz* matriz) {
     //Verifica se o camando pode ser executado e define as variaveis para que isso aconte�a
 
     //Top
@@ -222,7 +222,7 @@ void Inimigos::movimentacaoInimigos(sMatriz* matriz) {
     }
 }
 
-void Inimigos::execusaoMovInimigos(sMatriz* matriz) {
+void Aleatorios::execusaoMovInimigos(sMatriz* matriz) {
 
 
     //Executa a movimenta��o
@@ -248,23 +248,23 @@ void Inimigos::execusaoMovInimigos(sMatriz* matriz) {
     }
 }
 
-void Inimigos::desenhaInimigos(int sprite, int tipo) {
+void Aleatorios::desenhaInimigos(int sprite, int tipo) {
     inimigo = al_load_bitmap("Images/Teemo/TeemoSprite.png");
 
-    al_draw_bitmap_region(inimigo, tipo *  inimigos_largura, 0*inimigos_altura, inimigos_largura, inimigos_altura, Movimentacao::getPlayerX(), Movimentacao::getPlayerY(), 0);
+    al_draw_bitmap_region(inimigo, tipo * inimigos_largura, 0 * inimigos_altura, inimigos_largura, inimigos_altura, Inimigos::getPlayerX(), Inimigos::getPlayerY(), 0);
 }
 
-ALLEGRO_BITMAP* Inimigos::getInimigos() {
+ALLEGRO_BITMAP* Aleatorios::getInimigos() {
     return inimigo;
 }
 
-void Inimigos::Destrutor()
+void Aleatorios::Destrutor()
 {
     al_destroy_bitmap(inimigo); //Destroi a tela
 }
 
 
-Inimigos::~Inimigos()
+Aleatorios::~Aleatorios()
 {
     al_destroy_bitmap(inimigo); //Destroi a tela
 }
