@@ -30,6 +30,11 @@ void Display::setDisplay(int w, int h) {
 	}
 }
 
+void Display::Destrutor()
+{
+	al_destroy_display(display); //Destroi a tela
+}
+
 Display::~Display()
 {
 	al_destroy_display(display); //Destroi a tela

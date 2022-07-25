@@ -107,72 +107,6 @@ void Perseguidor::setInimigosY(float y) {
 }
 
 void Perseguidor::sorteioDirecao(sMatriz* matriz, float pacX, float pacY) {
-    /*
-    if (colisaoInimigosTop(matriz) == true)
-    {
-        if (opcao3[0] == 0 && opcao3[0] != ALLEGRO_KEY_UP)
-        {
-            opcao3[0] =  ALLEGRO_KEY_UP;
-        }
-        else if (opcao3[1] == 0 && opcao3[0] != ALLEGRO_KEY_UP)
-        {
-            opcao3[1] = ALLEGRO_KEY_UP;
-        }
-        else if (opcao3[2] == 0 && opcao3[0] != ALLEGRO_KEY_UP)
-        {
-            opcao3[2] = ALLEGRO_KEY_UP;
-        }
-    }
-    //Bottom
-    if (colisaoInimigosBottom(matriz) == true)
-    {
-        if (opcao3[0] == 0 && opcao3[0] != ALLEGRO_KEY_DOWN)
-        {
-            opcao3[0] = ALLEGRO_KEY_DOWN;
-        }
-        else if (opcao3[1] == 0 && opcao3[0] != ALLEGRO_KEY_DOWN)
-        {
-            opcao3[1] = ALLEGRO_KEY_DOWN;
-        }
-        else if (opcao3[2] == 0 && opcao3[0] != ALLEGRO_KEY_DOWN)
-        {
-            opcao3[2] = ALLEGRO_KEY_DOWN;
-        }
-    }
-    //Left
-    if (colisaoInimigosLeft(matriz) == true)
-    {
-        if (opcao3[0] == 0 && opcao3[0] != ALLEGRO_KEY_LEFT)
-        {
-            opcao3[0] = ALLEGRO_KEY_LEFT;
-        }
-        else if (opcao3[1] == 0 && opcao3[0] != ALLEGRO_KEY_LEFT)
-        {
-            opcao3[1] = ALLEGRO_KEY_LEFT;
-        }
-        else if (opcao3[2] == 0 && opcao3[0] != ALLEGRO_KEY_LEFT)
-        {
-            opcao3[2] = ALLEGRO_KEY_LEFT;
-        }
-    }
-    //Right
-    if (colisaoInimigosRight(matriz) == true)
-    {
-        if (opcao3[0] == 0 && opcao3[0] != ALLEGRO_KEY_RIGHT)
-        {
-            opcao3[0] = ALLEGRO_KEY_RIGHT;
-        }
-        else if (opcao3[1] == 0 && opcao3[0] != ALLEGRO_KEY_RIGHT)
-        {
-            opcao3[1] = ALLEGRO_KEY_RIGHT;
-        }
-        else if (opcao3[2] == 0 && opcao3[0] != ALLEGRO_KEY_RIGHT)
-        {
-            opcao3[2] = ALLEGRO_KEY_RIGHT;
-        }
-    }
-    cout << opcao3[0] << opcao3[1] << opcao3[2] << endl;
-    */
 
     int distanciaPacX;
     int distanciaPacY;
@@ -187,25 +121,25 @@ void Perseguidor::sorteioDirecao(sMatriz* matriz, float pacX, float pacY) {
         if (distanciaPacX > 0)
         {
             Instrucao = direcoes[1];
-            cout << "Indo pra Direira" << endl;
+            //cout << "Indo pra Direira" << endl;
         }
         else if (distanciaPacX >= 0)
         {
             if (distanciaPacY >= 0)
             {
                 Instrucao = direcoes[3];
-                cout << "Indo pra Baixo" << endl;
+                //cout << "Indo pra Baixo" << endl;
             }
             else
             {
                 Instrucao = direcoes[2];
-                cout << "Indo pra Cima" << endl;
+                //cout << "Indo pra Cima" << endl;
             }
         }
         else
         {
             Instrucao = direcoes[0];
-            cout << "Indo pra Esquerda" << endl;
+            //cout << "Indo pra Esquerda" << endl;
         }
     }
     else
@@ -213,25 +147,25 @@ void Perseguidor::sorteioDirecao(sMatriz* matriz, float pacX, float pacY) {
         if (distanciaPacY > 0)
         {
             Instrucao = direcoes[3];
-            cout << "Indo pra Baixo" << endl;
+            //cout << "Indo pra Baixo" << endl;
         }
         else if (distanciaPacY == 0)
         {
             if (distanciaPacX >= 0)
             {
                 Instrucao = direcoes[1];
-                cout << "Indo pra Direira" << endl;
+                //cout << "Indo pra Direira" << endl;
             }
             else
             {
                 Instrucao = direcoes[0];
-                cout << "Indo pra Esquerda" << endl;
+                //cout << "Indo pra Esquerda" << endl;
             }
         }
         else
         {
             Instrucao = direcoes[2];
-            cout << "Indo pra Cima" << endl;
+            //cout << "Indo pra Cima" << endl;
         }
     }
 
@@ -239,15 +173,185 @@ void Perseguidor::sorteioDirecao(sMatriz* matriz, float pacX, float pacY) {
     if (bufferX == getInimigosX() && bufferY == getInimigosY())
     {
         int flag = 0;
+        int posibilidades = 0;
 
-        srand(time(NULL));
+        int direcoes[4];
 
-        flag = rand() % 4;
+        for (int i = 0; i < 4; i++)
+        {
+            direcoes[i] = 0;
+        }
 
-        Instrucao = direcoes[flag];
+        if (left == true)
+        {
 
-        cout << "X" << bufferX << endl;
-        cout << "Y" << bufferY << endl;
+            //Left
+            if (colisaoInimigosLeft(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_LEFT;
+                posibilidades++;
+            }
+            //Top
+            if (colisaoInimigosTop(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_UP;
+                posibilidades++;
+            }
+            //Botton
+            if (colisaoInimigosBottom(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_DOWN;
+                posibilidades++;
+            }
+
+            srand(time(NULL));
+
+            if (posibilidades > 0)
+            {
+                flag = rand() % posibilidades;
+
+                Instrucao = direcoes[flag];
+            }
+
+        }
+
+        else if (right == true)
+        {
+
+            //Right
+            if (colisaoInimigosRight(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_RIGHT;
+                posibilidades++;
+            }
+            //Top
+            if (colisaoInimigosTop(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_UP;
+                posibilidades++;
+            }
+            //Botton
+            if (colisaoInimigosBottom(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_DOWN;
+                posibilidades++;
+            }
+
+            srand(time(NULL));
+
+            if (posibilidades > 0)
+            {
+                flag = rand() % posibilidades;
+
+                Instrucao = direcoes[flag];
+            }
+
+        }
+
+        else if (top == true)
+        {
+
+            //Left
+            if (colisaoInimigosLeft(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_LEFT;
+                posibilidades++;
+            }
+            //Right
+            if (colisaoInimigosRight(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_RIGHT;
+                posibilidades++;
+            }
+            //Top
+            if (colisaoInimigosTop(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_UP;
+                posibilidades++;
+            }
+
+            srand(time(NULL));
+
+            if (posibilidades > 0)
+            {
+                flag = rand() % posibilidades;
+
+                Instrucao = direcoes[flag];
+            }
+
+        }
+
+        else if (bottom == true)
+        {
+
+            //Left
+            if (colisaoInimigosLeft(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_LEFT;
+                posibilidades++;
+            }
+            //Right
+            if (colisaoInimigosRight(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_RIGHT;
+                posibilidades++;
+            }
+            //Botton
+            if (colisaoInimigosBottom(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_DOWN;
+                posibilidades++;
+            }
+
+            srand(time(NULL));
+
+            if (posibilidades > 0)
+            {
+                flag = rand() % posibilidades;
+
+                Instrucao = direcoes[flag];
+            }
+
+        }
+
+        else
+        {
+            //Left
+            if (colisaoInimigosLeft(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_LEFT;
+                posibilidades++;
+            }
+            //Right
+            if (colisaoInimigosRight(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_RIGHT;
+                posibilidades++;
+            }
+            //Top
+            if (colisaoInimigosTop(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_UP;
+                posibilidades++;
+            }
+            //Botton
+            if (colisaoInimigosBottom(matriz) == true)
+            {
+                direcoes[posibilidades] = ALLEGRO_KEY_DOWN;
+                posibilidades++;
+            }
+
+            srand(time(NULL));
+
+            if (posibilidades > 0)
+            {
+                flag = rand() % posibilidades;
+
+                Instrucao = direcoes[flag];
+            }
+
+
+        }
     }
 
     bufferX = getInimigosX();
@@ -297,29 +401,31 @@ void Perseguidor::movimentacaoInimigos(sMatriz* matriz) {
     }
 }
 
-void Perseguidor::execusaoMovInimigos(sMatriz* matriz) {
+void Perseguidor::execusaoMovInimigos(sMatriz* matriz, bool status) {
 
+    if (status == false)
+    {
+        //Executa a movimenta��o
 
-    //Executa a movimenta��o
+        if (top == true && colisaoInimigosTop(matriz) == true) { //Movimeta��o para Cima
+            setInimigosY(getInimigosY() - 2.0);
+            //darth_y -= 2.0;
+        }
 
-    if (top == true && colisaoInimigosTop(matriz) == true) { //Movimeta��o para Cima
-        setInimigosY(getInimigosY() - 2.0);
-        //darth_y -= 2.0;
-    }
+        if (bottom == true && colisaoInimigosBottom(matriz) == true) { //Movimenta��o para Baixo
+            setInimigosY(getInimigosY() + 2.0);
+            //darth_y += 2.0;
+        }
 
-    if (bottom == true && colisaoInimigosBottom(matriz) == true) { //Movimenta��o para Baixo
-        setInimigosY(getInimigosY() + 2.0);
-        //darth_y += 2.0;
-    }
+        if (left == true && colisaoInimigosLeft(matriz) == true) { //Movimenta��o para Esquerda
+            setInimigosX(getInimigosX() - 2.0);
+            //darth_x -= 2.0;
+        }
 
-    if (left == true && colisaoInimigosLeft(matriz) == true) { //Movimenta��o para Esquerda
-        setInimigosX(getInimigosX() - 2.0);
-        //darth_x -= 2.0;
-    }
-
-    if (right == true && colisaoInimigosRight(matriz) == true) { //Movimenta��o para Direita
-        setInimigosX(getInimigosX() + 2.0);
-        //darth_x += 2.0;
+        if (right == true && colisaoInimigosRight(matriz) == true) { //Movimenta��o para Direita
+            setInimigosX(getInimigosX() + 2.0);
+            //darth_x += 2.0;
+        }
     }
 }
 

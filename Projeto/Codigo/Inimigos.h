@@ -32,7 +32,7 @@ class Inimigos : public Movimentacao
 		virtual void sorteioDirecao(sMatriz* matriz, float, float);
 
 		virtual void movimentacaoInimigos(sMatriz*);
-		virtual void execusaoMovInimigos(sMatriz*);
+		virtual void execusaoMovInimigos(sMatriz*, bool status);
 
 		virtual void desenhaInimigos(int, int);
 

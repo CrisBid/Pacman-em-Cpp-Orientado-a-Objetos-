@@ -38,7 +38,7 @@ public:
     void setPacmanY(float);
 
 	void movimentacaoPacman(int, sMatriz*);
-	void execusaoMovPacman(sMatriz*);
+	void execusaoMovPacman(sMatriz*, bool status);
 
 	void desenhaPacman(int);
 

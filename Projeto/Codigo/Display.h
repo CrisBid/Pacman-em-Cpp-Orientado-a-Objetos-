@@ -13,6 +13,7 @@ public:
 	Display();
 	ALLEGRO_DISPLAY* getDisplay();
 	void setDisplay(int, int);
+	void Destrutor();
 	~Display();
 
 private:

@@ -222,29 +222,31 @@ void Inimigos::movimentacaoInimigos(sMatriz* matriz) {
     }
 }
 
-void Inimigos::execusaoMovInimigos(sMatriz* matriz) {
+void Inimigos::execusaoMovInimigos(sMatriz* matriz, bool status) {
 
+    if (status == false)
+    {
+        //Executa a movimenta��o
 
-    //Executa a movimenta��o
+        if (top == true && colisaoInimigosTop(matriz) == true) { //Movimeta��o para Cima
+            setInimigosY(getInimigosY() - 2.0);
+            //darth_y -= 2.0;
+        }
 
-    if (top == true && colisaoInimigosTop(matriz) == true) { //Movimeta��o para Cima
-        setInimigosY(getInimigosY() - 2.0);
-        //darth_y -= 2.0;
-    }
+        if (bottom == true && colisaoInimigosBottom(matriz) == true) { //Movimenta��o para Baixo
+            setInimigosY(getInimigosY() + 2.0);
+            //darth_y += 2.0;
+        }
 
-    if (bottom == true && colisaoInimigosBottom(matriz) == true) { //Movimenta��o para Baixo
-        setInimigosY(getInimigosY() + 2.0);
-        //darth_y += 2.0;
-    }
+        if (left == true && colisaoInimigosLeft(matriz) == true) { //Movimenta��o para Esquerda
+            setInimigosX(getInimigosX() - 2.0);
+            //darth_x -= 2.0;
+        }
 
-    if (left == true && colisaoInimigosLeft(matriz) == true) { //Movimenta��o para Esquerda
-        setInimigosX(getInimigosX() - 2.0);
-        //darth_x -= 2.0;
-    }
-
-    if (right == true && colisaoInimigosRight(matriz) == true) { //Movimenta��o para Direita
-        setInimigosX(getInimigosX() + 2.0);
-        //darth_x += 2.0;
+        if (right == true && colisaoInimigosRight(matriz) == true) { //Movimenta��o para Direita
+            setInimigosX(getInimigosX() + 2.0);
+            //darth_x += 2.0;
+        }
     }
 }
 

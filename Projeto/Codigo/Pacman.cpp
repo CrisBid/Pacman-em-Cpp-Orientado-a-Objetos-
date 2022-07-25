@@ -171,29 +171,31 @@ void Pacman::movimentacaoPacman(int Instrucao, sMatriz* matriz) {
     }
 }
 
-void Pacman::execusaoMovPacman(sMatriz* matriz) {
+void Pacman::execusaoMovPacman(sMatriz* matriz, bool status) {
 
+    if (status == false)
+    {
+        //Executa a movimentação
 
-    //Executa a movimentação
+        if (top == true && colisaoPacmanTop(matriz) == true) { //Movimetação para Cima
+            setPacmanY(getPacmanY() - 2.0);
+            //darth_y -= 2.0;
+        }
 
-    if (top == true && colisaoPacmanTop(matriz) == true) { //Movimetação para Cima
-        setPacmanY(getPacmanY() - 2.0);
-        //darth_y -= 2.0;
-    }
+        if (bottom == true && colisaoPacmanBottom(matriz) == true) { //Movimentação para Baixo
+            setPacmanY(getPacmanY() + 2.0);
+            //darth_y += 2.0;
+        }
 
-    if (bottom == true && colisaoPacmanBottom(matriz) == true) { //Movimentação para Baixo
-        setPacmanY(getPacmanY() + 2.0);
-        //darth_y += 2.0;
-    }
+        if (left == true && colisaoPacmanLeft(matriz) == true) { //Movimentação para Esquerda
+            setPacmanX(getPacmanX() - 2.0);
+            //darth_x -= 2.0;
+        }
 
-    if (left == true && colisaoPacmanLeft(matriz) == true) { //Movimentação para Esquerda
-        setPacmanX(getPacmanX() - 2.0);
-        //darth_x -= 2.0;
-    }
-
-    if (right == true && colisaoPacmanRight(matriz) == true) { //Movimentação para Direita
-        setPacmanX(getPacmanX() + 2.0);
-        //darth_x += 2.0;
+        if (right == true && colisaoPacmanRight(matriz) == true) { //Movimentação para Direita
+            setPacmanX(getPacmanX() + 2.0);
+            //darth_x += 2.0;
+        }
     }
 }
 
