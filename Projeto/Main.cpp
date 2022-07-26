@@ -34,8 +34,11 @@ int main(int argc, char **argv) {
 
     Pacman player(160,60);
 
-    Perseguidor fantasmas(410, 300);
-    Aleatorios fantasmas2(160, 620), fantasmas3(660, 620), fantasmas4(660, 60);
+    Perseguidor fantasmas(360, 300);
+    Aleatorios fantasmas2(360, 340), fantasmas3(460, 300), fantasmas4(460, 340);
+
+
+    //Aleatorios fantasmas2(160, 620), fantasmas3(660, 620), fantasmas4(660, 60);
 
     Inimigos* vetInimigos[4];
 
